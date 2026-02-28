@@ -1,0 +1,11 @@
+[2026-02-28 07:47:28,624] flops: 0.619251354, params: 0.315566, Total params: : 0.3156
+[2026-02-28 07:49:38,502] Epoch: 1, Dataset: test, Dice: 0.2938, IoU: 0.1847
+[2026-02-28 07:49:39,689] Epoch: 1, Dataset: val, Dice: 0.3022, IoU: 0.1922
+[2026-02-28 07:49:39,690] ### Best Model Saved (Dice improved from 0.0000 to 0.3022) ###
+[2026-02-28 07:49:39,755] 
+========================================
+FINAL RESULTS: ClinicDB_MK_UNet_bs8_lr0.0005_e1_augTrue_run1_t074714
+Best Val Dice: 0.3022
+Test Dice at Best Val: 0.2938
+Total Train Time: 128.18s
+========================================

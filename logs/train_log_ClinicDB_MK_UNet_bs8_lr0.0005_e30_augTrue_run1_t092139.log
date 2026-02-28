@@ -1,0 +1,53 @@
+[2026-02-28 09:22:05,753] flops: 0.619251354, params: 0.315566, Total params: : 0.3156
+[2026-02-28 09:24:16,095] Epoch: 1, Dataset: test, Dice: 0.1375, IoU: 0.0812
+[2026-02-28 09:24:17,465] Epoch: 1, Dataset: val, Dice: 0.2139, IoU: 0.1376
+[2026-02-28 09:24:17,466] ### Best Model Saved (Dice improved from 0.0000 to 0.2139) ###
+[2026-02-28 09:26:23,775] Epoch: 2, Dataset: test, Dice: 0.3199, IoU: 0.2084
+[2026-02-28 09:26:25,161] Epoch: 2, Dataset: val, Dice: 0.4057, IoU: 0.2805
+[2026-02-28 09:26:25,162] ### Best Model Saved (Dice improved from 0.2139 to 0.4057) ###
+[2026-02-28 09:28:32,670] Epoch: 3, Dataset: test, Dice: 0.4486, IoU: 0.3265
+[2026-02-28 09:28:34,094] Epoch: 3, Dataset: val, Dice: 0.4606, IoU: 0.3374
+[2026-02-28 09:28:34,095] ### Best Model Saved (Dice improved from 0.4057 to 0.4606) ###
+[2026-02-28 09:30:40,955] Epoch: 4, Dataset: test, Dice: 0.4803, IoU: 0.3521
+[2026-02-28 09:30:42,366] Epoch: 4, Dataset: val, Dice: 0.5210, IoU: 0.3850
+[2026-02-28 09:30:42,367] ### Best Model Saved (Dice improved from 0.4606 to 0.5210) ###
+[2026-02-28 09:32:48,653] Epoch: 5, Dataset: test, Dice: 0.5824, IoU: 0.4526
+[2026-02-28 09:32:50,063] Epoch: 5, Dataset: val, Dice: 0.5834, IoU: 0.4585
+[2026-02-28 09:32:50,064] ### Best Model Saved (Dice improved from 0.5210 to 0.5834) ###
+[2026-02-28 09:34:57,204] Epoch: 6, Dataset: test, Dice: 0.5691, IoU: 0.4424
+[2026-02-28 09:34:58,599] Epoch: 6, Dataset: val, Dice: 0.5658, IoU: 0.4460
+[2026-02-28 09:37:04,748] Epoch: 7, Dataset: test, Dice: 0.5669, IoU: 0.4282
+[2026-02-28 09:37:06,213] Epoch: 7, Dataset: val, Dice: 0.5476, IoU: 0.4220
+[2026-02-28 09:39:12,649] Epoch: 8, Dataset: test, Dice: 0.6823, IoU: 0.5600
+[2026-02-28 09:39:14,010] Epoch: 8, Dataset: val, Dice: 0.6534, IoU: 0.5307
+[2026-02-28 09:39:14,011] ### Best Model Saved (Dice improved from 0.5834 to 0.6534) ###
+[2026-02-28 09:41:22,275] Epoch: 9, Dataset: test, Dice: 0.5740, IoU: 0.4397
+[2026-02-28 09:41:23,729] Epoch: 9, Dataset: val, Dice: 0.5972, IoU: 0.4621
+[2026-02-28 09:43:31,187] Epoch: 10, Dataset: test, Dice: 0.6737, IoU: 0.5540
+[2026-02-28 09:43:32,583] Epoch: 10, Dataset: val, Dice: 0.6514, IoU: 0.5330
+[2026-02-28 09:45:56,565] Epoch: 11, Dataset: test, Dice: 0.7433, IoU: 0.6469
+[2026-02-28 09:45:58,277] Epoch: 11, Dataset: val, Dice: 0.6970, IoU: 0.5900
+[2026-02-28 09:45:58,278] ### Best Model Saved (Dice improved from 0.6534 to 0.6970) ###
+[2026-02-28 09:48:13,654] Epoch: 12, Dataset: test, Dice: 0.5343, IoU: 0.4156
+[2026-02-28 09:48:15,156] Epoch: 12, Dataset: val, Dice: 0.4876, IoU: 0.3796
+[2026-02-28 09:50:30,173] Epoch: 13, Dataset: test, Dice: 0.7931, IoU: 0.6939
+[2026-02-28 09:50:31,646] Epoch: 13, Dataset: val, Dice: 0.7150, IoU: 0.6139
+[2026-02-28 09:50:31,647] ### Best Model Saved (Dice improved from 0.6970 to 0.7150) ###
+[2026-02-28 09:52:37,094] Epoch: 14, Dataset: test, Dice: 0.8023, IoU: 0.6985
+[2026-02-28 09:52:38,469] Epoch: 14, Dataset: val, Dice: 0.7749, IoU: 0.6717
+[2026-02-28 09:52:38,469] ### Best Model Saved (Dice improved from 0.7150 to 0.7749) ###
+[2026-02-28 09:55:55,156] Epoch: 15, Dataset: test, Dice: 0.7914, IoU: 0.6972
+[2026-02-28 09:55:56,339] Epoch: 15, Dataset: val, Dice: 0.7120, IoU: 0.5989
+[2026-02-28 09:58:03,359] Epoch: 16, Dataset: test, Dice: 0.7923, IoU: 0.6889
+[2026-02-28 09:58:04,648] Epoch: 16, Dataset: val, Dice: 0.7561, IoU: 0.6466
+[2026-02-28 10:00:07,281] Epoch: 17, Dataset: test, Dice: 0.8341, IoU: 0.7547
+[2026-02-28 10:00:08,621] Epoch: 17, Dataset: val, Dice: 0.7949, IoU: 0.7060
+[2026-02-28 10:00:08,621] ### Best Model Saved (Dice improved from 0.7749 to 0.7949) ###
+[2026-02-28 10:02:12,621] Epoch: 18, Dataset: test, Dice: 0.8419, IoU: 0.7587
+[2026-02-28 10:02:14,303] Epoch: 18, Dataset: val, Dice: 0.7666, IoU: 0.6676
+[2026-02-28 10:04:22,164] Epoch: 19, Dataset: test, Dice: 0.8446, IoU: 0.7610
+[2026-02-28 10:04:24,563] Epoch: 19, Dataset: val, Dice: 0.8001, IoU: 0.7103
+[2026-02-28 10:04:24,564] ### Best Model Saved (Dice improved from 0.7949 to 0.8001) ###
+[2026-02-28 10:07:01,327] Epoch: 20, Dataset: test, Dice: 0.8465, IoU: 0.7627
+[2026-02-28 10:07:03,669] Epoch: 20, Dataset: val, Dice: 0.8044, IoU: 0.7075
+[2026-02-28 10:07:03,670] ### Best Model Saved (Dice improved from 0.8001 to 0.8044) ###
