@@ -1,0 +1,446 @@
+[2026-03-10 22:27:32,878] flops: 0.619251354, params: 0.315566, Total params: : 0.3156
+[2026-03-10 22:27:51,430] Epoch: 1, Dataset: test, Dice: 0.2762, IoU: 0.1730
+[2026-03-10 22:27:52,470] Epoch: 1, Dataset: val, Dice: 0.3304, IoU: 0.2181
+[2026-03-10 22:27:52,470] ### Best Model Saved (Dice improved from 0.0000 to 0.3304) ###
+[2026-03-10 22:28:09,700] Epoch: 2, Dataset: test, Dice: 0.3941, IoU: 0.2682
+[2026-03-10 22:28:10,769] Epoch: 2, Dataset: val, Dice: 0.4412, IoU: 0.3152
+[2026-03-10 22:28:10,769] ### Best Model Saved (Dice improved from 0.3304 to 0.4412) ###
+[2026-03-10 22:28:28,746] Epoch: 3, Dataset: test, Dice: 0.5117, IoU: 0.3792
+[2026-03-10 22:28:31,499] Epoch: 3, Dataset: val, Dice: 0.5366, IoU: 0.4111
+[2026-03-10 22:28:31,500] ### Best Model Saved (Dice improved from 0.4412 to 0.5366) ###
+[2026-03-10 22:28:50,970] Epoch: 4, Dataset: test, Dice: 0.5417, IoU: 0.4045
+[2026-03-10 22:28:53,163] Epoch: 4, Dataset: val, Dice: 0.5406, IoU: 0.4160
+[2026-03-10 22:28:53,164] ### Best Model Saved (Dice improved from 0.5366 to 0.5406) ###
+[2026-03-10 22:29:13,211] Epoch: 5, Dataset: test, Dice: 0.4647, IoU: 0.3340
+[2026-03-10 22:29:15,046] Epoch: 5, Dataset: val, Dice: 0.4956, IoU: 0.3604
+[2026-03-10 22:29:34,340] Epoch: 6, Dataset: test, Dice: 0.5324, IoU: 0.4051
+[2026-03-10 22:29:36,359] Epoch: 6, Dataset: val, Dice: 0.6128, IoU: 0.4939
+[2026-03-10 22:29:36,359] ### Best Model Saved (Dice improved from 0.5406 to 0.6128) ###
+[2026-03-10 22:29:56,080] Epoch: 7, Dataset: test, Dice: 0.5319, IoU: 0.4127
+[2026-03-10 22:29:57,891] Epoch: 7, Dataset: val, Dice: 0.5671, IoU: 0.4506
+[2026-03-10 22:30:17,553] Epoch: 8, Dataset: test, Dice: 0.7333, IoU: 0.6087
+[2026-03-10 22:30:19,480] Epoch: 8, Dataset: val, Dice: 0.6549, IoU: 0.5438
+[2026-03-10 22:30:19,480] ### Best Model Saved (Dice improved from 0.6128 to 0.6549) ###
+[2026-03-10 22:30:38,476] Epoch: 9, Dataset: test, Dice: 0.4976, IoU: 0.3732
+[2026-03-10 22:30:39,948] Epoch: 9, Dataset: val, Dice: 0.4672, IoU: 0.3486
+[2026-03-10 22:30:58,757] Epoch: 10, Dataset: test, Dice: 0.7496, IoU: 0.6333
+[2026-03-10 22:31:01,014] Epoch: 10, Dataset: val, Dice: 0.6904, IoU: 0.5762
+[2026-03-10 22:31:01,014] ### Best Model Saved (Dice improved from 0.6549 to 0.6904) ###
+[2026-03-10 22:31:20,426] Epoch: 11, Dataset: test, Dice: 0.7398, IoU: 0.6326
+[2026-03-10 22:31:22,079] Epoch: 11, Dataset: val, Dice: 0.6558, IoU: 0.5344
+[2026-03-10 22:31:45,715] Epoch: 12, Dataset: test, Dice: 0.7443, IoU: 0.6381
+[2026-03-10 22:31:47,912] Epoch: 12, Dataset: val, Dice: 0.6966, IoU: 0.5784
+[2026-03-10 22:31:47,912] ### Best Model Saved (Dice improved from 0.6904 to 0.6966) ###
+[2026-03-10 22:32:07,539] Epoch: 13, Dataset: test, Dice: 0.7516, IoU: 0.6388
+[2026-03-10 22:32:09,649] Epoch: 13, Dataset: val, Dice: 0.6672, IoU: 0.5425
+[2026-03-10 22:32:30,391] Epoch: 14, Dataset: test, Dice: 0.8346, IoU: 0.7347
+[2026-03-10 22:32:33,583] Epoch: 14, Dataset: val, Dice: 0.7248, IoU: 0.6113
+[2026-03-10 22:32:33,583] ### Best Model Saved (Dice improved from 0.6966 to 0.7248) ###
+[2026-03-10 22:32:53,099] Epoch: 15, Dataset: test, Dice: 0.6557, IoU: 0.5240
+[2026-03-10 22:32:54,489] Epoch: 15, Dataset: val, Dice: 0.6359, IoU: 0.5028
+[2026-03-10 22:33:12,584] Epoch: 16, Dataset: test, Dice: 0.7841, IoU: 0.6843
+[2026-03-10 22:33:14,300] Epoch: 16, Dataset: val, Dice: 0.7474, IoU: 0.6462
+[2026-03-10 22:33:14,300] ### Best Model Saved (Dice improved from 0.7248 to 0.7474) ###
+[2026-03-10 22:33:33,397] Epoch: 17, Dataset: test, Dice: 0.8353, IoU: 0.7471
+[2026-03-10 22:33:34,895] Epoch: 17, Dataset: val, Dice: 0.7759, IoU: 0.6722
+[2026-03-10 22:33:34,895] ### Best Model Saved (Dice improved from 0.7474 to 0.7759) ###
+[2026-03-10 22:33:52,518] Epoch: 18, Dataset: test, Dice: 0.8233, IoU: 0.7289
+[2026-03-10 22:33:53,900] Epoch: 18, Dataset: val, Dice: 0.7526, IoU: 0.6460
+[2026-03-10 22:34:11,778] Epoch: 19, Dataset: test, Dice: 0.8401, IoU: 0.7575
+[2026-03-10 22:34:13,214] Epoch: 19, Dataset: val, Dice: 0.7766, IoU: 0.6772
+[2026-03-10 22:34:13,214] ### Best Model Saved (Dice improved from 0.7759 to 0.7766) ###
+[2026-03-10 22:34:31,449] Epoch: 20, Dataset: test, Dice: 0.8526, IoU: 0.7657
+[2026-03-10 22:34:35,560] Epoch: 20, Dataset: val, Dice: 0.7596, IoU: 0.6604
+[2026-03-10 22:34:54,081] Epoch: 21, Dataset: test, Dice: 0.8699, IoU: 0.7877
+[2026-03-10 22:34:55,124] Epoch: 21, Dataset: val, Dice: 0.7799, IoU: 0.6881
+[2026-03-10 22:34:55,125] ### Best Model Saved (Dice improved from 0.7766 to 0.7799) ###
+[2026-03-10 22:35:12,654] Epoch: 22, Dataset: test, Dice: 0.5885, IoU: 0.4581
+[2026-03-10 22:35:14,044] Epoch: 22, Dataset: val, Dice: 0.5751, IoU: 0.4472
+[2026-03-10 22:35:31,249] Epoch: 23, Dataset: test, Dice: 0.7851, IoU: 0.6905
+[2026-03-10 22:35:32,297] Epoch: 23, Dataset: val, Dice: 0.7451, IoU: 0.6412
+[2026-03-10 22:35:49,236] Epoch: 24, Dataset: test, Dice: 0.7800, IoU: 0.6735
+[2026-03-10 22:35:50,277] Epoch: 24, Dataset: val, Dice: 0.6938, IoU: 0.5792
+[2026-03-10 22:36:07,266] Epoch: 25, Dataset: test, Dice: 0.8630, IoU: 0.7862
+[2026-03-10 22:36:08,307] Epoch: 25, Dataset: val, Dice: 0.7674, IoU: 0.6717
+[2026-03-10 22:36:25,288] Epoch: 26, Dataset: test, Dice: 0.8634, IoU: 0.7908
+[2026-03-10 22:36:26,359] Epoch: 26, Dataset: val, Dice: 0.7992, IoU: 0.7110
+[2026-03-10 22:36:26,359] ### Best Model Saved (Dice improved from 0.7799 to 0.7992) ###
+[2026-03-10 22:36:43,403] Epoch: 27, Dataset: test, Dice: 0.8729, IoU: 0.7955
+[2026-03-10 22:36:44,436] Epoch: 27, Dataset: val, Dice: 0.8003, IoU: 0.7067
+[2026-03-10 22:36:44,436] ### Best Model Saved (Dice improved from 0.7992 to 0.8003) ###
+[2026-03-10 22:37:01,522] Epoch: 28, Dataset: test, Dice: 0.8806, IoU: 0.8055
+[2026-03-10 22:37:02,614] Epoch: 28, Dataset: val, Dice: 0.8139, IoU: 0.7288
+[2026-03-10 22:37:02,614] ### Best Model Saved (Dice improved from 0.8003 to 0.8139) ###
+[2026-03-10 22:37:19,736] Epoch: 29, Dataset: test, Dice: 0.8753, IoU: 0.7984
+[2026-03-10 22:37:20,814] Epoch: 29, Dataset: val, Dice: 0.7953, IoU: 0.6979
+[2026-03-10 22:37:37,725] Epoch: 30, Dataset: test, Dice: 0.8632, IoU: 0.7838
+[2026-03-10 22:37:38,749] Epoch: 30, Dataset: val, Dice: 0.7682, IoU: 0.6768
+[2026-03-10 22:37:55,801] Epoch: 31, Dataset: test, Dice: 0.8719, IoU: 0.7912
+[2026-03-10 22:37:56,898] Epoch: 31, Dataset: val, Dice: 0.8109, IoU: 0.7144
+[2026-03-10 22:38:13,847] Epoch: 32, Dataset: test, Dice: 0.8731, IoU: 0.7927
+[2026-03-10 22:38:14,882] Epoch: 32, Dataset: val, Dice: 0.8164, IoU: 0.7261
+[2026-03-10 22:38:14,882] ### Best Model Saved (Dice improved from 0.8139 to 0.8164) ###
+[2026-03-10 22:38:37,461] Epoch: 33, Dataset: test, Dice: 0.8617, IoU: 0.7783
+[2026-03-10 22:38:38,635] Epoch: 33, Dataset: val, Dice: 0.8009, IoU: 0.7067
+[2026-03-10 22:38:55,766] Epoch: 34, Dataset: test, Dice: 0.8865, IoU: 0.8122
+[2026-03-10 22:38:56,780] Epoch: 34, Dataset: val, Dice: 0.8258, IoU: 0.7431
+[2026-03-10 22:38:56,780] ### Best Model Saved (Dice improved from 0.8164 to 0.8258) ###
+[2026-03-10 22:39:13,841] Epoch: 35, Dataset: test, Dice: 0.8561, IoU: 0.7765
+[2026-03-10 22:39:14,855] Epoch: 35, Dataset: val, Dice: 0.7936, IoU: 0.6970
+[2026-03-10 22:39:31,766] Epoch: 36, Dataset: test, Dice: 0.8993, IoU: 0.8293
+[2026-03-10 22:39:32,775] Epoch: 36, Dataset: val, Dice: 0.8308, IoU: 0.7390
+[2026-03-10 22:39:32,775] ### Best Model Saved (Dice improved from 0.8258 to 0.8308) ###
+[2026-03-10 22:39:49,821] Epoch: 37, Dataset: test, Dice: 0.9088, IoU: 0.8436
+[2026-03-10 22:39:50,868] Epoch: 37, Dataset: val, Dice: 0.8323, IoU: 0.7495
+[2026-03-10 22:39:50,868] ### Best Model Saved (Dice improved from 0.8308 to 0.8323) ###
+[2026-03-10 22:40:07,876] Epoch: 38, Dataset: test, Dice: 0.9146, IoU: 0.8482
+[2026-03-10 22:40:08,999] Epoch: 38, Dataset: val, Dice: 0.8479, IoU: 0.7696
+[2026-03-10 22:40:08,999] ### Best Model Saved (Dice improved from 0.8323 to 0.8479) ###
+[2026-03-10 22:40:26,059] Epoch: 39, Dataset: test, Dice: 0.8956, IoU: 0.8252
+[2026-03-10 22:40:27,099] Epoch: 39, Dataset: val, Dice: 0.8016, IoU: 0.7192
+[2026-03-10 22:40:44,158] Epoch: 40, Dataset: test, Dice: 0.9022, IoU: 0.8350
+[2026-03-10 22:40:45,219] Epoch: 40, Dataset: val, Dice: 0.8407, IoU: 0.7591
+[2026-03-10 22:41:02,240] Epoch: 41, Dataset: test, Dice: 0.9136, IoU: 0.8491
+[2026-03-10 22:41:03,322] Epoch: 41, Dataset: val, Dice: 0.8517, IoU: 0.7743
+[2026-03-10 22:41:03,322] ### Best Model Saved (Dice improved from 0.8479 to 0.8517) ###
+[2026-03-10 22:41:20,519] Epoch: 42, Dataset: test, Dice: 0.9149, IoU: 0.8520
+[2026-03-10 22:41:21,559] Epoch: 42, Dataset: val, Dice: 0.8464, IoU: 0.7612
+[2026-03-10 22:41:38,531] Epoch: 43, Dataset: test, Dice: 0.9042, IoU: 0.8359
+[2026-03-10 22:41:39,546] Epoch: 43, Dataset: val, Dice: 0.8566, IoU: 0.7766
+[2026-03-10 22:41:39,547] ### Best Model Saved (Dice improved from 0.8517 to 0.8566) ###
+[2026-03-10 22:41:56,571] Epoch: 44, Dataset: test, Dice: 0.9193, IoU: 0.8575
+[2026-03-10 22:41:57,592] Epoch: 44, Dataset: val, Dice: 0.8493, IoU: 0.7737
+[2026-03-10 22:42:14,605] Epoch: 45, Dataset: test, Dice: 0.9179, IoU: 0.8565
+[2026-03-10 22:42:15,679] Epoch: 45, Dataset: val, Dice: 0.8629, IoU: 0.7876
+[2026-03-10 22:42:15,679] ### Best Model Saved (Dice improved from 0.8566 to 0.8629) ###
+[2026-03-10 22:42:32,825] Epoch: 46, Dataset: test, Dice: 0.8958, IoU: 0.8268
+[2026-03-10 22:42:33,875] Epoch: 46, Dataset: val, Dice: 0.8300, IoU: 0.7465
+[2026-03-10 22:42:50,826] Epoch: 47, Dataset: test, Dice: 0.8751, IoU: 0.8023
+[2026-03-10 22:42:51,859] Epoch: 47, Dataset: val, Dice: 0.8210, IoU: 0.7289
+[2026-03-10 22:43:08,815] Epoch: 48, Dataset: test, Dice: 0.9085, IoU: 0.8409
+[2026-03-10 22:43:09,890] Epoch: 48, Dataset: val, Dice: 0.8201, IoU: 0.7342
+[2026-03-10 22:43:27,022] Epoch: 49, Dataset: test, Dice: 0.8972, IoU: 0.8289
+[2026-03-10 22:43:28,151] Epoch: 49, Dataset: val, Dice: 0.8436, IoU: 0.7599
+[2026-03-10 22:43:45,132] Epoch: 50, Dataset: test, Dice: 0.9086, IoU: 0.8436
+[2026-03-10 22:43:46,235] Epoch: 50, Dataset: val, Dice: 0.8243, IoU: 0.7424
+[2026-03-10 22:44:03,228] Epoch: 51, Dataset: test, Dice: 0.8661, IoU: 0.7773
+[2026-03-10 22:44:04,293] Epoch: 51, Dataset: val, Dice: 0.7495, IoU: 0.6496
+[2026-03-10 22:44:21,330] Epoch: 52, Dataset: test, Dice: 0.9079, IoU: 0.8408
+[2026-03-10 22:44:22,392] Epoch: 52, Dataset: val, Dice: 0.8544, IoU: 0.7774
+[2026-03-10 22:44:39,453] Epoch: 53, Dataset: test, Dice: 0.8968, IoU: 0.8303
+[2026-03-10 22:44:40,479] Epoch: 53, Dataset: val, Dice: 0.8580, IoU: 0.7753
+[2026-03-10 22:44:57,536] Epoch: 54, Dataset: test, Dice: 0.9048, IoU: 0.8364
+[2026-03-10 22:44:58,561] Epoch: 54, Dataset: val, Dice: 0.8461, IoU: 0.7645
+[2026-03-10 22:45:15,558] Epoch: 55, Dataset: test, Dice: 0.9111, IoU: 0.8508
+[2026-03-10 22:45:16,589] Epoch: 55, Dataset: val, Dice: 0.8568, IoU: 0.7769
+[2026-03-10 22:45:33,605] Epoch: 56, Dataset: test, Dice: 0.9193, IoU: 0.8584
+[2026-03-10 22:45:34,663] Epoch: 56, Dataset: val, Dice: 0.8511, IoU: 0.7743
+[2026-03-10 22:45:51,688] Epoch: 57, Dataset: test, Dice: 0.9270, IoU: 0.8682
+[2026-03-10 22:45:52,733] Epoch: 57, Dataset: val, Dice: 0.8637, IoU: 0.7859
+[2026-03-10 22:45:52,733] ### Best Model Saved (Dice improved from 0.8629 to 0.8637) ###
+[2026-03-10 22:46:09,775] Epoch: 58, Dataset: test, Dice: 0.8888, IoU: 0.8212
+[2026-03-10 22:46:10,782] Epoch: 58, Dataset: val, Dice: 0.8038, IoU: 0.7137
+[2026-03-10 22:46:27,827] Epoch: 59, Dataset: test, Dice: 0.9215, IoU: 0.8611
+[2026-03-10 22:46:28,874] Epoch: 59, Dataset: val, Dice: 0.8484, IoU: 0.7691
+[2026-03-10 22:46:45,853] Epoch: 60, Dataset: test, Dice: 0.9303, IoU: 0.8746
+[2026-03-10 22:46:46,862] Epoch: 60, Dataset: val, Dice: 0.8610, IoU: 0.7819
+[2026-03-10 22:47:03,866] Epoch: 61, Dataset: test, Dice: 0.9155, IoU: 0.8517
+[2026-03-10 22:47:04,926] Epoch: 61, Dataset: val, Dice: 0.8516, IoU: 0.7707
+[2026-03-10 22:47:21,848] Epoch: 62, Dataset: test, Dice: 0.9019, IoU: 0.8395
+[2026-03-10 22:47:22,923] Epoch: 62, Dataset: val, Dice: 0.8363, IoU: 0.7510
+[2026-03-10 22:47:39,984] Epoch: 63, Dataset: test, Dice: 0.9190, IoU: 0.8579
+[2026-03-10 22:47:41,098] Epoch: 63, Dataset: val, Dice: 0.8769, IoU: 0.8073
+[2026-03-10 22:47:41,099] ### Best Model Saved (Dice improved from 0.8637 to 0.8769) ###
+[2026-03-10 22:47:58,182] Epoch: 64, Dataset: test, Dice: 0.9209, IoU: 0.8599
+[2026-03-10 22:47:59,247] Epoch: 64, Dataset: val, Dice: 0.8621, IoU: 0.7879
+[2026-03-10 22:48:16,158] Epoch: 65, Dataset: test, Dice: 0.9127, IoU: 0.8510
+[2026-03-10 22:48:17,185] Epoch: 65, Dataset: val, Dice: 0.8450, IoU: 0.7570
+[2026-03-10 22:48:34,162] Epoch: 66, Dataset: test, Dice: 0.9169, IoU: 0.8563
+[2026-03-10 22:48:35,183] Epoch: 66, Dataset: val, Dice: 0.8700, IoU: 0.7971
+[2026-03-10 22:48:52,123] Epoch: 67, Dataset: test, Dice: 0.9027, IoU: 0.8365
+[2026-03-10 22:48:53,173] Epoch: 67, Dataset: val, Dice: 0.8502, IoU: 0.7617
+[2026-03-10 22:49:10,251] Epoch: 68, Dataset: test, Dice: 0.9152, IoU: 0.8528
+[2026-03-10 22:49:11,320] Epoch: 68, Dataset: val, Dice: 0.8592, IoU: 0.7749
+[2026-03-10 22:49:28,327] Epoch: 69, Dataset: test, Dice: 0.9273, IoU: 0.8692
+[2026-03-10 22:49:29,344] Epoch: 69, Dataset: val, Dice: 0.8788, IoU: 0.8075
+[2026-03-10 22:49:29,344] ### Best Model Saved (Dice improved from 0.8769 to 0.8788) ###
+[2026-03-10 22:49:46,393] Epoch: 70, Dataset: test, Dice: 0.9261, IoU: 0.8686
+[2026-03-10 22:49:47,502] Epoch: 70, Dataset: val, Dice: 0.8750, IoU: 0.8017
+[2026-03-10 22:50:04,469] Epoch: 71, Dataset: test, Dice: 0.9337, IoU: 0.8792
+[2026-03-10 22:50:05,494] Epoch: 71, Dataset: val, Dice: 0.8787, IoU: 0.8046
+[2026-03-10 22:50:22,374] Epoch: 72, Dataset: test, Dice: 0.9085, IoU: 0.8447
+[2026-03-10 22:50:23,387] Epoch: 72, Dataset: val, Dice: 0.8545, IoU: 0.7759
+[2026-03-10 22:50:40,313] Epoch: 73, Dataset: test, Dice: 0.9168, IoU: 0.8568
+[2026-03-10 22:50:41,336] Epoch: 73, Dataset: val, Dice: 0.8504, IoU: 0.7741
+[2026-03-10 22:50:58,292] Epoch: 74, Dataset: test, Dice: 0.9215, IoU: 0.8591
+[2026-03-10 22:50:59,339] Epoch: 74, Dataset: val, Dice: 0.8791, IoU: 0.8029
+[2026-03-10 22:50:59,339] ### Best Model Saved (Dice improved from 0.8788 to 0.8791) ###
+[2026-03-10 22:51:16,361] Epoch: 75, Dataset: test, Dice: 0.9233, IoU: 0.8667
+[2026-03-10 22:51:17,408] Epoch: 75, Dataset: val, Dice: 0.8858, IoU: 0.8142
+[2026-03-10 22:51:17,408] ### Best Model Saved (Dice improved from 0.8791 to 0.8858) ###
+[2026-03-10 22:51:34,492] Epoch: 76, Dataset: test, Dice: 0.9264, IoU: 0.8700
+[2026-03-10 22:51:35,523] Epoch: 76, Dataset: val, Dice: 0.8793, IoU: 0.8096
+[2026-03-10 22:51:52,397] Epoch: 77, Dataset: test, Dice: 0.9072, IoU: 0.8441
+[2026-03-10 22:51:53,464] Epoch: 77, Dataset: val, Dice: 0.8684, IoU: 0.7986
+[2026-03-10 22:52:10,797] Epoch: 78, Dataset: test, Dice: 0.9290, IoU: 0.8738
+[2026-03-10 22:52:12,212] Epoch: 78, Dataset: val, Dice: 0.8834, IoU: 0.8136
+[2026-03-10 22:52:29,315] Epoch: 79, Dataset: test, Dice: 0.9231, IoU: 0.8661
+[2026-03-10 22:52:30,345] Epoch: 79, Dataset: val, Dice: 0.8753, IoU: 0.8001
+[2026-03-10 22:52:47,321] Epoch: 80, Dataset: test, Dice: 0.9305, IoU: 0.8752
+[2026-03-10 22:52:48,336] Epoch: 80, Dataset: val, Dice: 0.8830, IoU: 0.8120
+[2026-03-10 22:53:05,261] Epoch: 81, Dataset: test, Dice: 0.9263, IoU: 0.8699
+[2026-03-10 22:53:06,346] Epoch: 81, Dataset: val, Dice: 0.8881, IoU: 0.8167
+[2026-03-10 22:53:06,347] ### Best Model Saved (Dice improved from 0.8858 to 0.8881) ###
+[2026-03-10 22:53:23,395] Epoch: 82, Dataset: test, Dice: 0.9142, IoU: 0.8507
+[2026-03-10 22:53:24,423] Epoch: 82, Dataset: val, Dice: 0.8653, IoU: 0.7902
+[2026-03-10 22:53:41,388] Epoch: 83, Dataset: test, Dice: 0.9271, IoU: 0.8705
+[2026-03-10 22:53:42,492] Epoch: 83, Dataset: val, Dice: 0.8674, IoU: 0.7911
+[2026-03-10 22:53:59,477] Epoch: 84, Dataset: test, Dice: 0.9292, IoU: 0.8733
+[2026-03-10 22:54:00,607] Epoch: 84, Dataset: val, Dice: 0.8845, IoU: 0.8141
+[2026-03-10 22:54:17,563] Epoch: 85, Dataset: test, Dice: 0.9200, IoU: 0.8594
+[2026-03-10 22:54:18,588] Epoch: 85, Dataset: val, Dice: 0.8783, IoU: 0.8048
+[2026-03-10 22:54:35,673] Epoch: 86, Dataset: test, Dice: 0.9365, IoU: 0.8842
+[2026-03-10 22:54:36,711] Epoch: 86, Dataset: val, Dice: 0.8635, IoU: 0.7885
+[2026-03-10 22:54:53,650] Epoch: 87, Dataset: test, Dice: 0.9101, IoU: 0.8512
+[2026-03-10 22:54:54,687] Epoch: 87, Dataset: val, Dice: 0.8899, IoU: 0.8194
+[2026-03-10 22:54:54,687] ### Best Model Saved (Dice improved from 0.8881 to 0.8899) ###
+[2026-03-10 22:55:11,841] Epoch: 88, Dataset: test, Dice: 0.9185, IoU: 0.8620
+[2026-03-10 22:55:12,942] Epoch: 88, Dataset: val, Dice: 0.8757, IoU: 0.8073
+[2026-03-10 22:55:29,890] Epoch: 89, Dataset: test, Dice: 0.9234, IoU: 0.8672
+[2026-03-10 22:55:30,950] Epoch: 89, Dataset: val, Dice: 0.8813, IoU: 0.8114
+[2026-03-10 22:55:48,027] Epoch: 90, Dataset: test, Dice: 0.9247, IoU: 0.8668
+[2026-03-10 22:55:49,087] Epoch: 90, Dataset: val, Dice: 0.8877, IoU: 0.8188
+[2026-03-10 22:56:06,069] Epoch: 91, Dataset: test, Dice: 0.9188, IoU: 0.8629
+[2026-03-10 22:56:07,099] Epoch: 91, Dataset: val, Dice: 0.8721, IoU: 0.7995
+[2026-03-10 22:56:24,057] Epoch: 92, Dataset: test, Dice: 0.9251, IoU: 0.8713
+[2026-03-10 22:56:25,082] Epoch: 92, Dataset: val, Dice: 0.8808, IoU: 0.8098
+[2026-03-10 22:56:42,074] Epoch: 93, Dataset: test, Dice: 0.9293, IoU: 0.8730
+[2026-03-10 22:56:43,227] Epoch: 93, Dataset: val, Dice: 0.8823, IoU: 0.8118
+[2026-03-10 22:57:00,337] Epoch: 94, Dataset: test, Dice: 0.9271, IoU: 0.8705
+[2026-03-10 22:57:06,875] Epoch: 94, Dataset: val, Dice: 0.8851, IoU: 0.8168
+[2026-03-10 22:57:24,585] Epoch: 95, Dataset: test, Dice: 0.9349, IoU: 0.8819
+[2026-03-10 22:57:25,750] Epoch: 95, Dataset: val, Dice: 0.8693, IoU: 0.7976
+[2026-03-10 22:57:42,730] Epoch: 96, Dataset: test, Dice: 0.9311, IoU: 0.8788
+[2026-03-10 22:57:43,812] Epoch: 96, Dataset: val, Dice: 0.8801, IoU: 0.8095
+[2026-03-10 22:58:00,799] Epoch: 97, Dataset: test, Dice: 0.9300, IoU: 0.8748
+[2026-03-10 22:58:01,830] Epoch: 97, Dataset: val, Dice: 0.8648, IoU: 0.7907
+[2026-03-10 22:58:18,795] Epoch: 98, Dataset: test, Dice: 0.9356, IoU: 0.8830
+[2026-03-10 22:58:19,820] Epoch: 98, Dataset: val, Dice: 0.8862, IoU: 0.8168
+[2026-03-10 22:58:36,803] Epoch: 99, Dataset: test, Dice: 0.9332, IoU: 0.8804
+[2026-03-10 22:58:37,819] Epoch: 99, Dataset: val, Dice: 0.8829, IoU: 0.8150
+[2026-03-10 22:58:54,874] Epoch: 100, Dataset: test, Dice: 0.9210, IoU: 0.8622
+[2026-03-10 22:58:55,943] Epoch: 100, Dataset: val, Dice: 0.8797, IoU: 0.8061
+[2026-03-10 22:59:12,981] Epoch: 101, Dataset: test, Dice: 0.9345, IoU: 0.8816
+[2026-03-10 22:59:14,034] Epoch: 101, Dataset: val, Dice: 0.8897, IoU: 0.8223
+[2026-03-10 22:59:31,059] Epoch: 102, Dataset: test, Dice: 0.9390, IoU: 0.8890
+[2026-03-10 22:59:32,140] Epoch: 102, Dataset: val, Dice: 0.8822, IoU: 0.8126
+[2026-03-10 22:59:49,169] Epoch: 103, Dataset: test, Dice: 0.9206, IoU: 0.8616
+[2026-03-10 22:59:50,260] Epoch: 103, Dataset: val, Dice: 0.8843, IoU: 0.8149
+[2026-03-10 23:00:07,269] Epoch: 104, Dataset: test, Dice: 0.9346, IoU: 0.8817
+[2026-03-10 23:00:08,285] Epoch: 104, Dataset: val, Dice: 0.8851, IoU: 0.8175
+[2026-03-10 23:00:25,310] Epoch: 105, Dataset: test, Dice: 0.9352, IoU: 0.8822
+[2026-03-10 23:00:26,355] Epoch: 105, Dataset: val, Dice: 0.8904, IoU: 0.8239
+[2026-03-10 23:00:26,355] ### Best Model Saved (Dice improved from 0.8899 to 0.8904) ###
+[2026-03-10 23:00:43,425] Epoch: 106, Dataset: test, Dice: 0.9195, IoU: 0.8618
+[2026-03-10 23:00:44,458] Epoch: 106, Dataset: val, Dice: 0.8890, IoU: 0.8242
+[2026-03-10 23:01:01,426] Epoch: 107, Dataset: test, Dice: 0.9317, IoU: 0.8781
+[2026-03-10 23:01:02,463] Epoch: 107, Dataset: val, Dice: 0.8905, IoU: 0.8211
+[2026-03-10 23:01:02,463] ### Best Model Saved (Dice improved from 0.8904 to 0.8905) ###
+[2026-03-10 23:01:19,489] Epoch: 108, Dataset: test, Dice: 0.9216, IoU: 0.8656
+[2026-03-10 23:01:20,576] Epoch: 108, Dataset: val, Dice: 0.8904, IoU: 0.8205
+[2026-03-10 23:01:37,522] Epoch: 109, Dataset: test, Dice: 0.9375, IoU: 0.8860
+[2026-03-10 23:01:38,647] Epoch: 109, Dataset: val, Dice: 0.8834, IoU: 0.8150
+[2026-03-10 23:01:55,558] Epoch: 110, Dataset: test, Dice: 0.9350, IoU: 0.8824
+[2026-03-10 23:01:56,610] Epoch: 110, Dataset: val, Dice: 0.8963, IoU: 0.8311
+[2026-03-10 23:01:56,610] ### Best Model Saved (Dice improved from 0.8905 to 0.8963) ###
+[2026-03-10 23:02:13,691] Epoch: 111, Dataset: test, Dice: 0.9343, IoU: 0.8808
+[2026-03-10 23:02:14,805] Epoch: 111, Dataset: val, Dice: 0.8947, IoU: 0.8265
+[2026-03-10 23:02:31,773] Epoch: 112, Dataset: test, Dice: 0.9305, IoU: 0.8763
+[2026-03-10 23:02:32,789] Epoch: 112, Dataset: val, Dice: 0.8884, IoU: 0.8234
+[2026-03-10 23:02:49,766] Epoch: 113, Dataset: test, Dice: 0.9375, IoU: 0.8857
+[2026-03-10 23:02:50,831] Epoch: 113, Dataset: val, Dice: 0.8879, IoU: 0.8189
+[2026-03-10 23:03:07,807] Epoch: 114, Dataset: test, Dice: 0.9348, IoU: 0.8817
+[2026-03-10 23:03:08,839] Epoch: 114, Dataset: val, Dice: 0.8904, IoU: 0.8210
+[2026-03-10 23:03:25,802] Epoch: 115, Dataset: test, Dice: 0.9272, IoU: 0.8700
+[2026-03-10 23:03:26,900] Epoch: 115, Dataset: val, Dice: 0.8895, IoU: 0.8230
+[2026-03-10 23:03:43,917] Epoch: 116, Dataset: test, Dice: 0.9265, IoU: 0.8685
+[2026-03-10 23:03:44,970] Epoch: 116, Dataset: val, Dice: 0.8795, IoU: 0.8076
+[2026-03-10 23:04:02,000] Epoch: 117, Dataset: test, Dice: 0.9320, IoU: 0.8781
+[2026-03-10 23:04:03,064] Epoch: 117, Dataset: val, Dice: 0.8935, IoU: 0.8247
+[2026-03-10 23:04:20,079] Epoch: 118, Dataset: test, Dice: 0.9316, IoU: 0.8776
+[2026-03-10 23:04:21,098] Epoch: 118, Dataset: val, Dice: 0.8820, IoU: 0.8088
+[2026-03-10 23:04:38,047] Epoch: 119, Dataset: test, Dice: 0.9320, IoU: 0.8773
+[2026-03-10 23:04:39,094] Epoch: 119, Dataset: val, Dice: 0.8831, IoU: 0.8125
+[2026-03-10 23:04:56,061] Epoch: 120, Dataset: test, Dice: 0.9329, IoU: 0.8786
+[2026-03-10 23:04:57,136] Epoch: 120, Dataset: val, Dice: 0.8847, IoU: 0.8140
+[2026-03-10 23:05:14,212] Epoch: 121, Dataset: test, Dice: 0.9348, IoU: 0.8818
+[2026-03-10 23:05:15,236] Epoch: 121, Dataset: val, Dice: 0.8870, IoU: 0.8190
+[2026-03-10 23:05:32,168] Epoch: 122, Dataset: test, Dice: 0.9343, IoU: 0.8803
+[2026-03-10 23:05:33,227] Epoch: 122, Dataset: val, Dice: 0.8848, IoU: 0.8140
+[2026-03-10 23:05:50,218] Epoch: 123, Dataset: test, Dice: 0.9393, IoU: 0.8884
+[2026-03-10 23:05:51,350] Epoch: 123, Dataset: val, Dice: 0.8893, IoU: 0.8203
+[2026-03-10 23:06:08,369] Epoch: 124, Dataset: test, Dice: 0.9209, IoU: 0.8686
+[2026-03-10 23:06:09,423] Epoch: 124, Dataset: val, Dice: 0.8859, IoU: 0.8153
+[2026-03-10 23:06:26,441] Epoch: 125, Dataset: test, Dice: 0.9358, IoU: 0.8836
+[2026-03-10 23:06:27,483] Epoch: 125, Dataset: val, Dice: 0.8902, IoU: 0.8195
+[2026-03-10 23:06:49,603] Epoch: 126, Dataset: test, Dice: 0.9331, IoU: 0.8798
+[2026-03-10 23:06:50,689] Epoch: 126, Dataset: val, Dice: 0.8836, IoU: 0.8168
+[2026-03-10 23:07:07,746] Epoch: 127, Dataset: test, Dice: 0.9332, IoU: 0.8800
+[2026-03-10 23:07:08,815] Epoch: 127, Dataset: val, Dice: 0.8813, IoU: 0.8122
+[2026-03-10 23:07:25,820] Epoch: 128, Dataset: test, Dice: 0.9362, IoU: 0.8840
+[2026-03-10 23:07:26,849] Epoch: 128, Dataset: val, Dice: 0.8899, IoU: 0.8210
+[2026-03-10 23:07:43,863] Epoch: 129, Dataset: test, Dice: 0.9341, IoU: 0.8807
+[2026-03-10 23:07:44,867] Epoch: 129, Dataset: val, Dice: 0.8969, IoU: 0.8294
+[2026-03-10 23:07:44,867] ### Best Model Saved (Dice improved from 0.8963 to 0.8969) ###
+[2026-03-10 23:08:01,985] Epoch: 130, Dataset: test, Dice: 0.9342, IoU: 0.8811
+[2026-03-10 23:08:03,014] Epoch: 130, Dataset: val, Dice: 0.8901, IoU: 0.8222
+[2026-03-10 23:08:19,962] Epoch: 131, Dataset: test, Dice: 0.9354, IoU: 0.8834
+[2026-03-10 23:08:21,010] Epoch: 131, Dataset: val, Dice: 0.8980, IoU: 0.8314
+[2026-03-10 23:08:21,010] ### Best Model Saved (Dice improved from 0.8969 to 0.8980) ###
+[2026-03-10 23:08:37,991] Epoch: 132, Dataset: test, Dice: 0.9399, IoU: 0.8896
+[2026-03-10 23:08:39,031] Epoch: 132, Dataset: val, Dice: 0.8968, IoU: 0.8318
+[2026-03-10 23:08:56,027] Epoch: 133, Dataset: test, Dice: 0.9368, IoU: 0.8853
+[2026-03-10 23:08:57,100] Epoch: 133, Dataset: val, Dice: 0.8918, IoU: 0.8253
+[2026-03-10 23:09:14,061] Epoch: 134, Dataset: test, Dice: 0.9381, IoU: 0.8871
+[2026-03-10 23:09:15,088] Epoch: 134, Dataset: val, Dice: 0.8945, IoU: 0.8254
+[2026-03-10 23:09:31,983] Epoch: 135, Dataset: test, Dice: 0.9386, IoU: 0.8875
+[2026-03-10 23:09:33,006] Epoch: 135, Dataset: val, Dice: 0.8973, IoU: 0.8329
+[2026-03-10 23:09:50,042] Epoch: 136, Dataset: test, Dice: 0.9389, IoU: 0.8880
+[2026-03-10 23:09:51,166] Epoch: 136, Dataset: val, Dice: 0.8963, IoU: 0.8321
+[2026-03-10 23:10:08,085] Epoch: 137, Dataset: test, Dice: 0.9397, IoU: 0.8892
+[2026-03-10 23:10:09,176] Epoch: 137, Dataset: val, Dice: 0.8898, IoU: 0.8234
+[2026-03-10 23:10:26,124] Epoch: 138, Dataset: test, Dice: 0.9342, IoU: 0.8806
+[2026-03-10 23:10:27,166] Epoch: 138, Dataset: val, Dice: 0.8957, IoU: 0.8294
+[2026-03-10 23:10:44,147] Epoch: 139, Dataset: test, Dice: 0.9350, IoU: 0.8816
+[2026-03-10 23:10:45,171] Epoch: 139, Dataset: val, Dice: 0.8930, IoU: 0.8261
+[2026-03-10 23:11:02,102] Epoch: 140, Dataset: test, Dice: 0.9395, IoU: 0.8890
+[2026-03-10 23:11:03,165] Epoch: 140, Dataset: val, Dice: 0.8966, IoU: 0.8342
+[2026-03-10 23:11:20,180] Epoch: 141, Dataset: test, Dice: 0.9390, IoU: 0.8882
+[2026-03-10 23:11:21,222] Epoch: 141, Dataset: val, Dice: 0.8910, IoU: 0.8238
+[2026-03-10 23:11:43,383] Epoch: 142, Dataset: test, Dice: 0.9407, IoU: 0.8909
+[2026-03-10 23:11:44,474] Epoch: 142, Dataset: val, Dice: 0.8809, IoU: 0.8115
+[2026-03-10 23:12:01,438] Epoch: 143, Dataset: test, Dice: 0.9401, IoU: 0.8902
+[2026-03-10 23:12:02,465] Epoch: 143, Dataset: val, Dice: 0.8918, IoU: 0.8250
+[2026-03-10 23:12:19,462] Epoch: 144, Dataset: test, Dice: 0.9379, IoU: 0.8861
+[2026-03-10 23:12:20,568] Epoch: 144, Dataset: val, Dice: 0.8932, IoU: 0.8283
+[2026-03-10 23:12:37,534] Epoch: 145, Dataset: test, Dice: 0.9384, IoU: 0.8878
+[2026-03-10 23:12:38,753] Epoch: 145, Dataset: val, Dice: 0.8978, IoU: 0.8314
+[2026-03-10 23:12:55,753] Epoch: 146, Dataset: test, Dice: 0.9340, IoU: 0.8808
+[2026-03-10 23:12:56,828] Epoch: 146, Dataset: val, Dice: 0.8890, IoU: 0.8220
+[2026-03-10 23:13:13,793] Epoch: 147, Dataset: test, Dice: 0.9404, IoU: 0.8907
+[2026-03-10 23:13:14,813] Epoch: 147, Dataset: val, Dice: 0.8894, IoU: 0.8222
+[2026-03-10 23:13:31,863] Epoch: 148, Dataset: test, Dice: 0.9357, IoU: 0.8840
+[2026-03-10 23:13:32,878] Epoch: 148, Dataset: val, Dice: 0.8927, IoU: 0.8283
+[2026-03-10 23:13:50,210] Epoch: 149, Dataset: test, Dice: 0.9350, IoU: 0.8824
+[2026-03-10 23:13:51,695] Epoch: 149, Dataset: val, Dice: 0.8917, IoU: 0.8219
+[2026-03-10 23:14:08,762] Epoch: 150, Dataset: test, Dice: 0.9369, IoU: 0.8856
+[2026-03-10 23:14:09,779] Epoch: 150, Dataset: val, Dice: 0.8935, IoU: 0.8262
+[2026-03-10 23:14:26,771] Epoch: 151, Dataset: test, Dice: 0.9340, IoU: 0.8816
+[2026-03-10 23:14:27,816] Epoch: 151, Dataset: val, Dice: 0.8881, IoU: 0.8224
+[2026-03-10 23:14:44,745] Epoch: 152, Dataset: test, Dice: 0.9404, IoU: 0.8907
+[2026-03-10 23:14:45,782] Epoch: 152, Dataset: val, Dice: 0.8953, IoU: 0.8307
+[2026-03-10 23:15:02,716] Epoch: 153, Dataset: test, Dice: 0.9362, IoU: 0.8845
+[2026-03-10 23:15:03,746] Epoch: 153, Dataset: val, Dice: 0.8907, IoU: 0.8243
+[2026-03-10 23:15:20,808] Epoch: 154, Dataset: test, Dice: 0.9383, IoU: 0.8876
+[2026-03-10 23:15:21,855] Epoch: 154, Dataset: val, Dice: 0.8919, IoU: 0.8263
+[2026-03-10 23:15:38,795] Epoch: 155, Dataset: test, Dice: 0.9369, IoU: 0.8850
+[2026-03-10 23:15:39,854] Epoch: 155, Dataset: val, Dice: 0.8898, IoU: 0.8228
+[2026-03-10 23:15:56,771] Epoch: 156, Dataset: test, Dice: 0.9393, IoU: 0.8889
+[2026-03-10 23:15:57,775] Epoch: 156, Dataset: val, Dice: 0.8896, IoU: 0.8212
+[2026-03-10 23:16:14,718] Epoch: 157, Dataset: test, Dice: 0.9389, IoU: 0.8889
+[2026-03-10 23:16:15,781] Epoch: 157, Dataset: val, Dice: 0.8943, IoU: 0.8273
+[2026-03-10 23:16:32,767] Epoch: 158, Dataset: test, Dice: 0.9345, IoU: 0.8816
+[2026-03-10 23:16:33,837] Epoch: 158, Dataset: val, Dice: 0.8918, IoU: 0.8277
+[2026-03-10 23:16:50,779] Epoch: 159, Dataset: test, Dice: 0.9293, IoU: 0.8762
+[2026-03-10 23:16:57,235] Epoch: 159, Dataset: val, Dice: 0.8885, IoU: 0.8225
+[2026-03-10 23:17:14,754] Epoch: 160, Dataset: test, Dice: 0.9383, IoU: 0.8876
+[2026-03-10 23:17:15,825] Epoch: 160, Dataset: val, Dice: 0.9009, IoU: 0.8355
+[2026-03-10 23:17:15,825] ### Best Model Saved (Dice improved from 0.8980 to 0.9009) ###
+[2026-03-10 23:17:33,065] Epoch: 161, Dataset: test, Dice: 0.9398, IoU: 0.8893
+[2026-03-10 23:17:34,133] Epoch: 161, Dataset: val, Dice: 0.8965, IoU: 0.8297
+[2026-03-10 23:17:51,168] Epoch: 162, Dataset: test, Dice: 0.9379, IoU: 0.8871
+[2026-03-10 23:17:52,259] Epoch: 162, Dataset: val, Dice: 0.9002, IoU: 0.8361
+[2026-03-10 23:18:14,522] Epoch: 163, Dataset: test, Dice: 0.9329, IoU: 0.8794
+[2026-03-10 23:18:15,617] Epoch: 163, Dataset: val, Dice: 0.8914, IoU: 0.8257
+[2026-03-10 23:18:32,643] Epoch: 164, Dataset: test, Dice: 0.9373, IoU: 0.8857
+[2026-03-10 23:18:33,769] Epoch: 164, Dataset: val, Dice: 0.8949, IoU: 0.8315
+[2026-03-10 23:18:50,745] Epoch: 165, Dataset: test, Dice: 0.9377, IoU: 0.8865
+[2026-03-10 23:18:51,786] Epoch: 165, Dataset: val, Dice: 0.8970, IoU: 0.8331
+[2026-03-10 23:19:08,819] Epoch: 166, Dataset: test, Dice: 0.9327, IoU: 0.8794
+[2026-03-10 23:19:09,941] Epoch: 166, Dataset: val, Dice: 0.8939, IoU: 0.8333
+[2026-03-10 23:19:26,852] Epoch: 167, Dataset: test, Dice: 0.9381, IoU: 0.8872
+[2026-03-10 23:19:27,911] Epoch: 167, Dataset: val, Dice: 0.8988, IoU: 0.8333
+[2026-03-10 23:19:44,914] Epoch: 168, Dataset: test, Dice: 0.9387, IoU: 0.8879
+[2026-03-10 23:19:46,030] Epoch: 168, Dataset: val, Dice: 0.8899, IoU: 0.8215
+[2026-03-10 23:20:02,956] Epoch: 169, Dataset: test, Dice: 0.9336, IoU: 0.8798
+[2026-03-10 23:20:03,992] Epoch: 169, Dataset: val, Dice: 0.8843, IoU: 0.8180
+[2026-03-10 23:20:20,952] Epoch: 170, Dataset: test, Dice: 0.9393, IoU: 0.8891
+[2026-03-10 23:20:22,017] Epoch: 170, Dataset: val, Dice: 0.8971, IoU: 0.8321
+[2026-03-10 23:20:38,986] Epoch: 171, Dataset: test, Dice: 0.9419, IoU: 0.8932
+[2026-03-10 23:20:40,037] Epoch: 171, Dataset: val, Dice: 0.8905, IoU: 0.8225
+[2026-03-10 23:20:57,034] Epoch: 172, Dataset: test, Dice: 0.9392, IoU: 0.8891
+[2026-03-10 23:20:58,123] Epoch: 172, Dataset: val, Dice: 0.8951, IoU: 0.8279
+[2026-03-10 23:21:15,149] Epoch: 173, Dataset: test, Dice: 0.9359, IoU: 0.8837
+[2026-03-10 23:21:16,164] Epoch: 173, Dataset: val, Dice: 0.8975, IoU: 0.8284
+[2026-03-10 23:21:33,171] Epoch: 174, Dataset: test, Dice: 0.9407, IoU: 0.8914
+[2026-03-10 23:21:34,224] Epoch: 174, Dataset: val, Dice: 0.8972, IoU: 0.8332
+[2026-03-10 23:21:51,168] Epoch: 175, Dataset: test, Dice: 0.9392, IoU: 0.8889
+[2026-03-10 23:21:52,240] Epoch: 175, Dataset: val, Dice: 0.8996, IoU: 0.8341
+[2026-03-10 23:22:09,216] Epoch: 176, Dataset: test, Dice: 0.9378, IoU: 0.8866
+[2026-03-10 23:22:10,291] Epoch: 176, Dataset: val, Dice: 0.8938, IoU: 0.8295
+[2026-03-10 23:22:27,323] Epoch: 177, Dataset: test, Dice: 0.9387, IoU: 0.8877
+[2026-03-10 23:22:28,368] Epoch: 177, Dataset: val, Dice: 0.8961, IoU: 0.8316
+[2026-03-10 23:22:50,553] Epoch: 178, Dataset: test, Dice: 0.9376, IoU: 0.8863
+[2026-03-10 23:22:52,009] Epoch: 178, Dataset: val, Dice: 0.8912, IoU: 0.8275
+[2026-03-10 23:23:09,510] Epoch: 179, Dataset: test, Dice: 0.9398, IoU: 0.8892
+[2026-03-10 23:23:10,561] Epoch: 179, Dataset: val, Dice: 0.9003, IoU: 0.8351
+[2026-03-10 23:23:27,539] Epoch: 180, Dataset: test, Dice: 0.9402, IoU: 0.8906
+[2026-03-10 23:23:28,556] Epoch: 180, Dataset: val, Dice: 0.8991, IoU: 0.8336
+[2026-03-10 23:23:45,448] Epoch: 181, Dataset: test, Dice: 0.9366, IoU: 0.8845
+[2026-03-10 23:23:46,466] Epoch: 181, Dataset: val, Dice: 0.8870, IoU: 0.8179
+[2026-03-10 23:24:03,464] Epoch: 182, Dataset: test, Dice: 0.9383, IoU: 0.8875
+[2026-03-10 23:24:04,511] Epoch: 182, Dataset: val, Dice: 0.8929, IoU: 0.8278
+[2026-03-10 23:24:21,431] Epoch: 183, Dataset: test, Dice: 0.9402, IoU: 0.8903
+[2026-03-10 23:24:22,515] Epoch: 183, Dataset: val, Dice: 0.8948, IoU: 0.8292
+[2026-03-10 23:24:39,426] Epoch: 184, Dataset: test, Dice: 0.9379, IoU: 0.8868
+[2026-03-10 23:24:40,512] Epoch: 184, Dataset: val, Dice: 0.8936, IoU: 0.8268
+[2026-03-10 23:24:57,475] Epoch: 185, Dataset: test, Dice: 0.9394, IoU: 0.8890
+[2026-03-10 23:24:58,489] Epoch: 185, Dataset: val, Dice: 0.8975, IoU: 0.8325
+[2026-03-10 23:25:15,413] Epoch: 186, Dataset: test, Dice: 0.9384, IoU: 0.8873
+[2026-03-10 23:25:16,437] Epoch: 186, Dataset: val, Dice: 0.8895, IoU: 0.8217
+[2026-03-10 23:25:33,538] Epoch: 187, Dataset: test, Dice: 0.9403, IoU: 0.8903
+[2026-03-10 23:25:34,564] Epoch: 187, Dataset: val, Dice: 0.8971, IoU: 0.8308
+[2026-03-10 23:25:51,481] Epoch: 188, Dataset: test, Dice: 0.9373, IoU: 0.8859
+[2026-03-10 23:25:52,492] Epoch: 188, Dataset: val, Dice: 0.8922, IoU: 0.8269
+[2026-03-10 23:26:09,499] Epoch: 189, Dataset: test, Dice: 0.9389, IoU: 0.8884
+[2026-03-10 23:26:10,538] Epoch: 189, Dataset: val, Dice: 0.8910, IoU: 0.8261
+[2026-03-10 23:26:27,422] Epoch: 190, Dataset: test, Dice: 0.9397, IoU: 0.8903
+[2026-03-10 23:26:28,486] Epoch: 190, Dataset: val, Dice: 0.8974, IoU: 0.8312
+[2026-03-10 23:26:45,539] Epoch: 191, Dataset: test, Dice: 0.9407, IoU: 0.8914
+[2026-03-10 23:26:46,561] Epoch: 191, Dataset: val, Dice: 0.9014, IoU: 0.8348
+[2026-03-10 23:26:46,561] ### Best Model Saved (Dice improved from 0.9009 to 0.9014) ###
+[2026-03-10 23:27:03,493] Epoch: 192, Dataset: test, Dice: 0.9379, IoU: 0.8866
+[2026-03-10 23:27:04,515] Epoch: 192, Dataset: val, Dice: 0.8964, IoU: 0.8296
+[2026-03-10 23:27:21,576] Epoch: 193, Dataset: test, Dice: 0.9396, IoU: 0.8896
+[2026-03-10 23:27:22,627] Epoch: 193, Dataset: val, Dice: 0.8969, IoU: 0.8325
+[2026-03-10 23:27:39,619] Epoch: 194, Dataset: test, Dice: 0.9389, IoU: 0.8880
+[2026-03-10 23:27:40,634] Epoch: 194, Dataset: val, Dice: 0.8903, IoU: 0.8217
+[2026-03-10 23:27:57,572] Epoch: 195, Dataset: test, Dice: 0.9395, IoU: 0.8892
+[2026-03-10 23:27:58,634] Epoch: 195, Dataset: val, Dice: 0.8893, IoU: 0.8248
+[2026-03-10 23:28:15,501] Epoch: 196, Dataset: test, Dice: 0.9384, IoU: 0.8876
+[2026-03-10 23:28:16,585] Epoch: 196, Dataset: val, Dice: 0.8932, IoU: 0.8257
+[2026-03-10 23:28:33,618] Epoch: 197, Dataset: test, Dice: 0.9394, IoU: 0.8889
+[2026-03-10 23:28:34,790] Epoch: 197, Dataset: val, Dice: 0.8949, IoU: 0.8281
+[2026-03-10 23:28:51,734] Epoch: 198, Dataset: test, Dice: 0.9391, IoU: 0.8884
+[2026-03-10 23:28:52,757] Epoch: 198, Dataset: val, Dice: 0.8984, IoU: 0.8336
+[2026-03-10 23:29:09,740] Epoch: 199, Dataset: test, Dice: 0.9380, IoU: 0.8867
+[2026-03-10 23:29:10,836] Epoch: 199, Dataset: val, Dice: 0.8894, IoU: 0.8203
+[2026-03-10 23:29:27,786] Epoch: 200, Dataset: test, Dice: 0.9376, IoU: 0.8866
+[2026-03-10 23:29:28,840] Epoch: 200, Dataset: val, Dice: 0.8929, IoU: 0.8274
+[2026-03-10 23:29:28,841] 
+========================================
+FINAL RESULTS: ClinicDB_MK_UNet_bs8_lr0.0005_e200_augTrue_run4_t222732
+Best Val Dice: 0.9014
+Test Dice at Best Val: 0.9407
+Total Train Time: 3211.60s
+========================================

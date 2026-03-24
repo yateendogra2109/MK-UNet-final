@@ -1,0 +1,55 @@
+name: MKNetEnv
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  # 1. Explicitly define Python to drastically narrow down the solver tree
+  - python=3.8
+  - pip
+
+  # 2. Relax the PyTorch build string and explicitly define cudatoolkit
+  - pytorch=1.11.0
+  - torchvision=0.12.0
+  - torchaudio=0.11.0
+  - cudatoolkit=11.3
+
+  # 3. Core scientific dependencies that solve quickly via Conda
+  - numpy=1.22.4
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - scikit-image
+  - scipy
+  - seaborn
+  - pyyaml
+  - tqdm
+  - loguru
+  - tabulate
+  - tifffile
+  - pillow
+  - simpleitk
+  - nibabel
+  - h5py
+
+  # 4. PyPI-exclusive packages (Moving these to pip stops Conda from hanging)
+  - pip:
+      # Use precompiled openmmlab wheel for mmcv-full to prevent a 20-minute source build
+      - mmcv-full==1.4.5 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html
+      - opencv-python
+      - albumentations==1.1.0
+      - warmup-scheduler
+      - transformers==4.21.3
+      - torchprofile
+      - torchmetrics
+      - einops
+      - ptflops
+      - torchsummary
+      - torchsummaryx
+      - segmentation-mask-overlay==0.3.4
+      - timm==0.6.12
+      - thop
+      - huggingface-hub==0.11.0
+      - ml_collections
+      - tensorboardx
+      - medpy
