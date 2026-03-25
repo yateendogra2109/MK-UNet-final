@@ -1,0 +1,60 @@
+/scratch/b23cs1001/mkunetenv/lib/python3.8/site-packages/torch/utils/data/dataloader.py:487: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Inference on test:   0%|          | 0/62 [00:00<?, ?it/s]Inference on test:   2%|▏         | 1/62 [00:08<08:58,  8.82s/it]Inference on test:   3%|▎         | 2/62 [00:09<03:44,  3.74s/it]Inference on test:   5%|▍         | 3/62 [00:09<02:15,  2.30s/it]Inference on test:   6%|▋         | 4/62 [00:09<01:29,  1.54s/it]Inference on test:   8%|▊         | 5/62 [00:10<01:02,  1.10s/it]Inference on test:  10%|▉         | 6/62 [00:10<00:51,  1.08it/s]Inference on test:  11%|█▏        | 7/62 [00:11<00:36,  1.50it/s]Inference on test:  13%|█▎        | 8/62 [00:11<00:27,  1.98it/s]Inference on test:  15%|█▍        | 9/62 [00:11<00:20,  2.61it/s]Inference on test:  16%|█▌        | 10/62 [00:11<00:15,  3.32it/s]Inference on test:  18%|█▊        | 11/62 [00:11<00:12,  4.10it/s]Inference on test:  21%|██        | 13/62 [00:11<00:08,  5.72it/s]Inference on test:  24%|██▍       | 15/62 [00:11<00:06,  6.90it/s]Inference on test:  27%|██▋       | 17/62 [00:12<00:05,  8.15it/s]Inference on test:  29%|██▉       | 18/62 [00:12<00:05,  8.45it/s]Inference on test:  31%|███       | 19/62 [00:12<00:04,  8.62it/s]Inference on test:  32%|███▏      | 20/62 [00:12<00:04,  8.79it/s]Inference on test:  35%|███▌      | 22/62 [00:12<00:04,  9.39it/s]Inference on test:  37%|███▋      | 23/62 [00:12<00:04,  9.33it/s]Inference on test:  39%|███▊      | 24/62 [00:12<00:04,  9.17it/s]Inference on test:  40%|████      | 25/62 [00:12<00:04,  9.00it/s]Inference on test:  44%|████▎     | 27/62 [00:13<00:03,  9.37it/s]Inference on test:  47%|████▋     | 29/62 [00:13<00:03, 10.22it/s]Inference on test:  50%|█████     | 31/62 [00:13<00:03,  9.84it/s]Inference on test:  53%|█████▎    | 33/62 [00:13<00:02, 10.98it/s]Inference on test:  56%|█████▋    | 35/62 [00:13<00:02, 12.57it/s]Inference on test:  60%|█████▉    | 37/62 [00:13<00:01, 13.77it/s]Inference on test:  63%|██████▎   | 39/62 [00:14<00:01, 13.77it/s]Inference on test:  66%|██████▌   | 41/62 [00:14<00:01, 13.64it/s]Inference on test:  69%|██████▉   | 43/62 [00:14<00:01, 12.47it/s]Inference on test:  73%|███████▎  | 45/62 [00:14<00:01, 12.12it/s]Inference on test:  76%|███████▌  | 47/62 [00:15<00:02,  5.52it/s]Inference on test:  77%|███████▋  | 48/62 [00:15<00:02,  4.91it/s]Inference on test:  79%|███████▉  | 49/62 [00:16<00:03,  4.26it/s]Inference on test:  81%|████████  | 50/62 [00:16<00:02,  4.84it/s]Inference on test:  82%|████████▏ | 51/62 [00:16<00:02,  5.44it/s]Inference on test:  84%|████████▍ | 52/62 [00:16<00:01,  6.03it/s]Inference on test:  85%|████████▌ | 53/62 [00:16<00:01,  6.67it/s]Inference on test:  87%|████████▋ | 54/62 [00:16<00:01,  7.22it/s]Inference on test:  89%|████████▊ | 55/62 [00:16<00:00,  7.67it/s]Inference on test:  90%|█████████ | 56/62 [00:16<00:00,  7.91it/s]Inference on test:  92%|█████████▏| 57/62 [00:16<00:00,  8.25it/s]Inference on test:  94%|█████████▎| 58/62 [00:17<00:00,  8.18it/s]Inference on test:  95%|█████████▌| 59/62 [00:17<00:00,  8.29it/s]Inference on test:  98%|█████████▊| 61/62 [00:17<00:00,  8.99it/s]Traceback (most recent call last):
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 133, in _remove_temp_dir
+    rmtree(tempdir)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+OSError: [Errno 16] Device or resource busy: '.nfs000000098b9fdf7500002ff5'
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 133, in _remove_temp_dir
+    rmtree(tempdir)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+OSError: [Errno 16] Device or resource busy: '.nfs0000000a0051436300002ff3'
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 133, in _remove_temp_dir
+    rmtree(tempdir)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+OSError: [Errno 16] Device or resource busy: '.nfs0000000aa3291dea00002ff2'
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/multiprocessing/util.py", line 133, in _remove_temp_dir
+    rmtree(tempdir)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 718, in rmtree
+    _rmtree_safe_fd(fd, path, onerror)
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 675, in _rmtree_safe_fd
+    onerror(os.unlink, fullname, sys.exc_info())
+  File "/scratch/b23cs1001/mkunetenv/lib/python3.8/shutil.py", line 673, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+OSError: [Errno 16] Device or resource busy: '.nfs000000090643496400002ff4'
+Inference on test: 100%|██████████| 62/62 [00:17<00:00,  3.51it/s]
+

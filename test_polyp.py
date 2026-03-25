@@ -141,8 +141,8 @@ if __name__ == '__main__':
     # --- Paths ---
     save_base = f'./predictions_polyp/{opt.run_id}/{opt.dataset_name}/{opt.split}'
     os.makedirs(save_base, exist_ok=True)
-    model_path = os.path.join(f'./model_pth/{opt.run_id}/', f'{opt.run_id}-best.pth')
-
+    model_path = os.path.join(f'./model_pth/ClinicDB_MK_UNet_bs8_lr0.0005_e200_augTrue_run{opt.run_id}_t232928/', f'ClinicDB_MK_UNet_bs8_lr0.0005_e200_augTrue_run{opt.run_id}_t232928-best.pth')
+    print(os.getcwd())
     opt.test_path = f'{opt.test_path}/{opt.dataset_name}/'
 
     # --- Model Loading ---

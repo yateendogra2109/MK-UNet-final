@@ -1,0 +1,8 @@
+/scratch/b23cs1001/MK-UNet-final
+
+Final Results for 5:
+Mean Dice: 0.9431
+Mean IoU: 0.8954
+Excel report saved to: results_polyp/Results_5_ClinicDB_test.xlsx
+Summary appended to All_Runs_Summary_Polyp.xlsx
+
