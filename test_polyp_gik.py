@@ -138,6 +138,8 @@ def main():
     model.cuda()
     
     ckpt_path = os.path.join(args.save_path, args.network, args.run_id, args.ckpt_name)
+    # HACK
+    ckpt_path = './snapshots/MK_UNet_GIK/20260326_173805/best.pth'
     ckpt = torch.load(ckpt_path)
     model.load_state_dict(ckpt['model_state'] if 'model_state' in ckpt else ckpt)
         
