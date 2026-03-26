@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=mkunet_train
-#SBATCH --output=output_%j.log
-#SBATCH --error=error_%j.err
+#SBATCH --output=logs/output_mod_%j.log
+#SBATCH --error=logs/error_mod_%j.err
 #SBATCH --partition=btech
 #SBATCH --gres=gpu:1
 #SBATCH --time=12:00:00        
