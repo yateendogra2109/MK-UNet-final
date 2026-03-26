@@ -9,7 +9,7 @@ import timm
 from timm.models.layers import trunc_normal_tf_
 from timm.models.helpers import named_apply
 
-__all__ = ['MK_UNet', 'MK_UNet_T', 'MK_UNet_S', 'MK_UNet_M', 'MK_UNet_L', 'soft_cldice_loss']
+__all__ = ['MK_UNet', 'MK_UNet_T', 'MK_UNet_S', 'MK_UNet_M', 'MK_UNet_L']
 
 # =============================================================================
 # CHANGE 1: G-DWCONV  — C4-equivariant depthwise convolution
@@ -149,96 +149,6 @@ class G_MKDC(nn.Module):
         return torch.cat([out1, out2, out3], dim=1)
 
 
-# =============================================================================
-# CHANGE 2: CPE  — Conditional Positional Encoding
-# Implemented as a zero-initialized depthwise conv (kernel=3, pad=1).
-# Adds spatially-varying position signal with effectively 0 parameter overhead
-# (weights start at zero and learn a small positional bias during training).
-# Placed immediately after PWC1 inside MKIR so position is injected before
-# the spatial convolution stage.
-# =============================================================================
-
-class CPE(nn.Module):
-    """Conditional Positional Encoding — zero-init depthwise conv."""
-    def __init__(self, in_channels):
-        super().__init__()
-        self.dw = nn.Conv2d(in_channels, in_channels,
-                            kernel_size=3, padding=1,
-                            groups=in_channels, bias=False)
-        nn.init.zeros_(self.dw.weight)
-
-    def forward(self, x):
-        return x + self.dw(x)   # residual: position bias added on top of features
-
-
-# =============================================================================
-# CHANGE 3: SEBlock  — Squeeze-and-Excitation channel gate
-# Applied only in encoder MKIR blocks (use_se=True).
-# Recalibrates channel responses after the residual addition, suppressing
-# colon-wall texture channels before features reach the decoder.
-# reduction=32 is used; guarded with max(..., 1) to avoid zero-size on tiny
-# channel counts (e.g. MK_UNet_T stage 1 has only 4 output channels).
-# =============================================================================
-
-class SEBlock(nn.Module):
-    """Squeeze-and-Excitation channel recalibration (r=32, encoder only)."""
-    def __init__(self, channels, reduction=32):
-        super().__init__()
-        mid = max(channels // reduction, 1)   # guard for small channel counts
-        self.pool = nn.AdaptiveAvgPool2d(1)
-        self.fc = nn.Sequential(
-            nn.Conv2d(channels, mid, 1, bias=False),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(mid, channels, 1, bias=False),
-            nn.Sigmoid(),
-        )
-
-    def forward(self, x):
-        scale = self.fc(self.pool(x))
-        return x * scale
-
-
-# =============================================================================
-# CHANGE 4: soft_cldice_loss  — topology-aware boundary loss
-# Computes a differentiable skeleton of prediction and ground-truth using
-# alternating soft erosion/dilation. Penalises predictions that break polyp
-# boundary connectivity, which BCE+IoU alone cannot enforce.
-# Loss = 0.4*BCE + 0.3*IoU + 0.3*clDice  (see hybrid_loss in train_polyp.py)
-# Zero parameter cost — training-time change only.
-# =============================================================================
-
-def _soft_erode(img):
-    p1 = -F.max_pool2d(-img, kernel_size=(3, 1), stride=(1, 1), padding=(1, 0))
-    return -F.max_pool2d(-p1, kernel_size=(1, 3), stride=(1, 1), padding=(0, 1))
-
-def _soft_dilate(img):
-    return F.max_pool2d(img, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-
-def _soft_skeletonize(x, iters=15):
-    for i in range(iters):
-        eroded   = _soft_erode(x)
-        dilated  = _soft_dilate(eroded)
-        skeleton = F.relu(x - dilated)
-        if i == 0:
-            skel = skeleton
-        else:
-            skel = skel + skeleton - skel * skeleton
-        x = eroded
-    return skel
-
-def soft_cldice_loss(y_true, y_pred, iters=15):
-    """
-    Differentiable clDice loss.
-    y_true: binary GT mask  [B, 1, H, W]  (float, values in {0,1})
-    y_pred: sigmoid output  [B, 1, H, W]  (float, values in [0,1])
-    Returns scalar loss in [0, 1].
-    """
-    skel_pred = _soft_skeletonize(y_pred, iters)
-    skel_true = _soft_skeletonize(y_true, iters)
-    tprec = (torch.sum(skel_pred * y_true) + 1e-6) / (torch.sum(skel_pred) + 1e-6)
-    tsens = (torch.sum(skel_true * y_pred) + 1e-6) / (torch.sum(skel_true) + 1e-6)
-    return 1.0 - 2.0 * (tprec * tsens) / (tprec + tsens + 1e-6)
-
 
 # =============================================================================
 # Utility helpers (unchanged from original)
@@ -357,24 +267,21 @@ class GroupedAttentionGate(nn.Module):
 
 
 # =============================================================================
-# Core block: MultiKernelInvertedResidualBlock  (MKIR-G)
+# Core block: MultiKernelInvertedResidualBlock
 #
-# Forward sequence (encoder, use_se=True):
+# Forward sequence:
 #   x → PWC1 → BN → ReLU6
-#             → CPE          [CHANGE 2 — positional encoding, ≈0 params]
 #             → G_MKDC       [CHANGE 1 — equivariant depthwise conv]
 #             → channel_shuffle(groups=3)
 #             → PWC2 → BN
 #             → + residual(x)
-#             → SE gate      [CHANGE 3 — channel recalibration, encoder only]
 #
-# Decoder blocks use use_se=False → SE is nn.Identity() → no overhead.
-# CPE and G_MKDC are present in decoder too (minor, both are very cheap).
+# Only G_MKDC is changed vs original MK-UNet. CPE and SE are NOT present.
 # =============================================================================
 
 class MultiKernelInvertedResidualBlock(nn.Module):
     def __init__(self, in_c, out_c, stride,
-                 expansion_factor=2, use_se=False, activation='relu6'):
+                 expansion_factor=2, activation='relu6'):
         super().__init__()
         assert stride in [1, 2]
         self.stride          = stride
@@ -390,10 +297,7 @@ class MultiKernelInvertedResidualBlock(nn.Module):
             act_layer(activation, inplace=True),
         )
 
-        # CPE: conditional positional encoding  [CHANGE 2]
-        self.cpe = CPE(self.ex_c)
-
-        # G_MKDC: group-equivariant multi-kernel DWC  [CHANGE 1]
+        # G_MKDC: group-equivariant multi-kernel DWC  [CHANGE 1 — only change]
         self.g_mkdc = G_MKDC(self.ex_c, stride=stride, activation=activation)
 
         # PWC2: project back to out_c
@@ -401,9 +305,6 @@ class MultiKernelInvertedResidualBlock(nn.Module):
             nn.Conv2d(self.ex_c, out_c, 1, 1, 0, bias=False),
             nn.BatchNorm2d(out_c),
         )
-
-        # SE gate  [CHANGE 3] — encoder only (use_se=True); decoder uses Identity
-        self.se = SEBlock(out_c, reduction=32) if use_se else nn.Identity()
 
         # Projection for skip when channel mismatch
         if self.use_skip and (in_c != out_c):
@@ -413,7 +314,6 @@ class MultiKernelInvertedResidualBlock(nn.Module):
 
     def forward(self, x):
         out = self.pconv1(x)
-        out = self.cpe(out)
         out = self.g_mkdc(out)
         # Shuffle across the 3 branches (1×1, 3×3-G, 5×5-G)
         def safe_channel_shuffle(x, max_groups=3):
@@ -430,30 +330,29 @@ class MultiKernelInvertedResidualBlock(nn.Module):
             res = self.proj(x) if self.in_c != self.out_c else x
             out = out + res
 
-        out = self.se(out)   # identity for decoder blocks
         return out
 
 
 def mk_irb_bottleneck(in_c, out_c, n, s,
-                      expansion_factor=2, use_se=False, activation='relu6'):
+                      expansion_factor=2, activation='relu6'):
     """Stack n MultiKernelInvertedResidualBlocks."""
     blocks = [MultiKernelInvertedResidualBlock(
         in_c, out_c, s,
         expansion_factor=expansion_factor,
-        use_se=use_se, activation=activation)]
+        activation=activation)]
     for _ in range(1, n):
         blocks.append(MultiKernelInvertedResidualBlock(
             out_c, out_c, 1,
             expansion_factor=expansion_factor,
-            use_se=use_se, activation=activation))
+            activation=activation))
     return nn.Sequential(*blocks)
 
 
 # =============================================================================
 # MK-UNet model family
 # All variants share the same forward() logic through _MKUNetBase.
-# use_se=True  in encoder  →  SE gate active
-# use_se=False in decoder  →  SE gate is nn.Identity
+# Only change vs original: MKDC → G_MKDC (C4-equivariant depthwise conv).
+# CPE and SE are NOT present in this variant.
 # =============================================================================
 
 class _MKUNetBase(nn.Module):
@@ -466,17 +365,17 @@ class _MKUNetBase(nn.Module):
         super().__init__()
         C = channels
 
-        # ── Encoder (SE enabled) ─────────────────────────────────────────────
+        # ── Encoder ─────────────────────────────────────────────────────────
         self.encoder1 = mk_irb_bottleneck(in_channels, C[0], depths[0], 1,
-                                          expansion_factor, use_se=True)
+                                          expansion_factor)
         self.encoder2 = mk_irb_bottleneck(C[0], C[1], depths[1], 1,
-                                          expansion_factor, use_se=True)
+                                          expansion_factor)
         self.encoder3 = mk_irb_bottleneck(C[1], C[2], depths[2], 1,
-                                          expansion_factor, use_se=True)
+                                          expansion_factor)
         self.encoder4 = mk_irb_bottleneck(C[2], C[3], depths[3], 1,
-                                          expansion_factor, use_se=True)
+                                          expansion_factor)
         self.encoder5 = mk_irb_bottleneck(C[3], C[4], depths[4], 1,
-                                          expansion_factor, use_se=True)
+                                          expansion_factor)
 
         # ── Grouped Attention Gates ───────────────────────────────────────────
         self.AG1 = GroupedAttentionGate(C[3], C[3], C[3] // 2,
@@ -488,17 +387,17 @@ class _MKUNetBase(nn.Module):
         self.AG4 = GroupedAttentionGate(C[0], C[0], C[0] // 2,
                                         gag_kernel, C[0] // 2)
 
-        # ── Decoder (SE disabled) ─────────────────────────────────────────────
+        # ── Decoder ──────────────────────────────────────────────────────────
         self.decoder1 = mk_irb_bottleneck(C[4], C[3], 1, 1,
-                                          expansion_factor, use_se=False)
+                                          expansion_factor)
         self.decoder2 = mk_irb_bottleneck(C[3], C[2], 1, 1,
-                                          expansion_factor, use_se=False)
+                                          expansion_factor)
         self.decoder3 = mk_irb_bottleneck(C[2], C[1], 1, 1,
-                                          expansion_factor, use_se=False)
+                                          expansion_factor)
         self.decoder4 = mk_irb_bottleneck(C[1], C[0], 1, 1,
-                                          expansion_factor, use_se=False)
+                                          expansion_factor)
         self.decoder5 = mk_irb_bottleneck(C[0], C[0], 1, 1,
-                                          expansion_factor, use_se=False)
+                                          expansion_factor)
 
         # ── MKIRA attention in decoder (CA + SA) ─────────────────────────────
         # CA ratios clamped so reduced channels >= 1

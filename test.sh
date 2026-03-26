@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=mkunet_train
 #SBATCH --output=/scratch/b23cs1001/MK-UNet-final/logs/test_output_%j.log
-#SBATCH --error=/scratch/b23cs1001/MK-UNet-final/logs/error_%j.err
+#SBATCH --error=/scratch/b23cs1001/MK-UNet-final/logs/error_output_%j.err
 #SBATCH --partition=btech
 #SBATCH --gres=gpu:1
 #SBATCH --time=12:00:00        

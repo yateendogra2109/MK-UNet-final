@@ -11,36 +11,27 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-from mkunet_network import MODEL_REGISTRY, soft_cldice_loss
+from mkunet_network import MODEL_REGISTRY
 from utils.dataloader_polyp import get_loader
 from utils.utils import clip_gradient, AvgMeter, cal_params_flops
 
 
 # =============================================================================
-# CHANGE 4: hybrid_loss  — 0.4*BCE + 0.3*IoU + 0.3*clDice
-# clDice enforces polyp boundary topology/connectivity.
-# BCE uses logits directly (numerically stable).
-# IoU and clDice receive sigmoid-activated predictions.
+# Loss: 0.5*BCE + 0.5*IoU  (original MK-UNet structure loss)
+# Only G_MKDC architectural change is active — no clDice.
 # =============================================================================
 
 def structure_loss(pred, mask):
-    """Returns (bce_scalar, iou_scalar). pred = raw logits."""
+    """
+    Combined BCE + IoU loss. pred = raw logits  [B, 1, H, W]
+    Returns scalar loss.
+    """
     pred_sig = torch.sigmoid(pred)
     bce  = F.binary_cross_entropy_with_logits(pred, mask, reduction='mean')
     inter = (pred_sig * mask).sum(dim=(2, 3))
     union = (pred_sig + mask).sum(dim=(2, 3))
     iou   = 1.0 - (inter + 1e-6) / (union - inter + 1e-6)
-    return bce, iou.mean()
-
-def hybrid_loss(pred, mask):
-    """
-    Combined loss for ClinicDB polyp segmentation.
-    pred : raw logits  [B, 1, H, W]
-    mask : binary GT   [B, 1, H, W]  float
-    """
-    bce, iou   = structure_loss(pred, mask)
-    cldice     = soft_cldice_loss(mask, torch.sigmoid(pred))
-    return 0.4 * bce + 0.3 * iou + 0.3 * cldice
+    return bce + iou.mean()
 
 
 # =============================================================================
@@ -143,7 +134,7 @@ def train(train_loader, model, optimizer, epoch, opt, run_id):
 
             out  = model(images_v)
             pred = out[0] if isinstance(out, list) else out
-            loss = hybrid_loss(pred, gts_v)
+            loss = structure_loss(pred, gts_v)
 
             loss.backward()
             clip_gradient(optimizer, opt.clip)

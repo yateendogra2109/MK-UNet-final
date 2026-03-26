@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/scratch/b23cs1001/MK-UNet-final/test_polyp.py", line 145, in <module>
-    print(os.get_cwd())
-AttributeError: module 'os' has no attribute 'get_cwd'
-
-ERROR conda.cli.main_run:execute(124): `conda run python /scratch/b23cs1001/MK-UNet-final/test_polyp.py --run_id 5` failed. (See above for error)
