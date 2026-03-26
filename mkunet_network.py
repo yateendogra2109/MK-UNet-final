@@ -55,12 +55,17 @@ class GroupEquivariantDepthwiseConv(nn.Module):
 
         # Apply all 4 rotated kernels depthwise to the same input
         # Repeat x along channel dim so each rotation gets its own copy
-        x4 = x.repeat(1, 4, 1, 1)                        # [B, 4*C_in, H, W]
-        out = F.conv2d(x4, weights,
-                       stride=self.stride,
-                       padding=self.padding,
-                       groups=4 * self.in_channels,       # depthwise over 4*C_in
-                       bias=False)
+        x4 = x.repeat(1, 4, 1, 1)   
+        # print(x4.shape)
+        # print(weights.shape)
+        # print(4 * self.in_channels)                     # [B, 4*C_in, H, W]
+        out = F.conv2d( x4,
+                   weights,
+                    bias=None,
+                    stride=(self.stride, self.stride),
+                    padding=(self.padding, self.padding),
+                    dilation=(1, 1),
+                    groups=4 * self.in_channels)
         return out                                        # [B, 4*C_in, H, W]
 
 
@@ -411,7 +416,14 @@ class MultiKernelInvertedResidualBlock(nn.Module):
         out = self.cpe(out)
         out = self.g_mkdc(out)
         # Shuffle across the 3 branches (1×1, 3×3-G, 5×5-G)
-        out = channel_shuffle(out, 3)
+        def safe_channel_shuffle(x, max_groups=3):
+           C = x.shape[1]
+           for g in range(max_groups, 0, -1):
+              if C % g == 0:
+                return channel_shuffle(x, g)
+           return x
+
+        out = safe_channel_shuffle(out, 3)
         out = self.pconv2(out)
 
         if self.use_skip:
