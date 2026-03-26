@@ -71,7 +71,10 @@ class AvgMeter(object):
         self.losses.append(val)
 
     def show(self):
-        return torch.mean(torch.stack(self.losses[np.maximum(len(self.losses)-self.num, 0):]))
+        if not self.losses:
+            return 0.0
+        subset = self.losses[np.maximum(len(self.losses)-self.num, 0):]
+        return np.mean([l.item() if torch.is_tensor(l) else l for l in subset])
 
 
 def CalParams(model, input_tensor):

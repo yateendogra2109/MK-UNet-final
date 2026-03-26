@@ -97,4 +97,34 @@ class PolypDataset(data.Dataset):
 def get_loader(image_root, gt_root, batchsize, trainsize, shuffle=False, num_workers=4, pin_memory=True, augmentation=False, split='train', color_image=True):
     dataset = PolypDataset(image_root, gt_root, trainsize, augmentation, split, color_image)
     return data.DataLoader(dataset=dataset, batch_size=batchsize, shuffle=shuffle, num_workers=num_workers, pin_memory=pin_memory)
+
+class TestDataset:
+    def __init__(self, image_root, gt_root, testsize):
+        self.testsize = testsize
+        exts = ('.jpg', '.png', '.jpeg', '.tif')
+        self.images = sorted([os.path.join(image_root, f) for f in os.listdir(image_root) if f.lower().endswith(exts)])
+        self.gts = sorted([os.path.join(gt_root, f) for f in os.listdir(gt_root) if f.lower().endswith(exts)])
+        
+        self.transform = A.Compose([
+            A.Resize(height=self.testsize, width=self.testsize),
+            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            ToTensorV2()
+        ])
+        self.size = len(self.images)
+        self.index = 0
+
+    def load_data(self):
+        image = cv2.imread(self.images[self.index])
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # GT resize is handled in test_polyp_gik.py using original shape, 
+        # so just load original GT here.
+        gt = Image.open(self.gts[self.index]).convert('L')
+        name = os.path.basename(self.images[self.index])
+        
+        image = self.transform(image=image)['image']
+        image = image.unsqueeze(0)
+        
+        self.index += 1
+        return image, gt, name
     

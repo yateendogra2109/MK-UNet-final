@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/MK-UNet-final/train_polyp_gik.py", line 22, in <module>
+    from utils.dataloader import get_loader, TestDataset
+ModuleNotFoundError: No module named 'utils.dataloader'
+
+ERROR conda.cli.main_run:execute(124): `conda run python /scratch/b23cs1001/MK-UNet-final/train_polyp_gik.py` failed. (See above for error)
