@@ -11,6 +11,6 @@ export TMPDIR=/scratch/b23cs1001/tmp
 export HF_HOME=/scratch/b23cs1001/cache/huggingface
 export TORCH_HOME=/scratch/b23cs1001/cache/torch
 
-# 2. Run your python script directly inside your custom environment
-# REPLACE "/path/to/your/actual_script.py" with your real Python file!
-conda run --prefix /scratch/b23cs1001/mkunetenv python /scratch/b23cs1001/MK-UNet-final/test_polyp.py --run_id 5
+# 2. Run the LoMix evaluation script directly inside your custom environment
+conda run --prefix /scratch/b23cs1001/mkunetenv \
+    python /scratch/b23cs1001/MK-UNet-final/test_polyp_lomix.py --run_id 5
