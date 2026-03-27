@@ -1,73 +1,104 @@
-# MK-UNet
+# MK-UNet + LoMix
 
-Official Pytorch implementation of the paper [MK-UNet: Multi-kernel Lightweight CNN for Medical Image Segmentation](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf) published in ICCV 2025 CVAMD
-[Md Mostafijur Rahman](https://mostafij-rahman.github.io/), [Radu Marculescu](https://radum.ece.utexas.edu/)
-<p>The University of Texas at Austin</p>
+## Overview
 
-[ARXIV](https://arxiv.org/abs/2509.18493) | [PAPER](https://openaccess.thecvf.com/content/ICCV2025W/CVAMD/papers/Rahman_MK-UNet_Multi-kernel_Lightweight_CNN_for_Medical_Image_Segmentation_ICCVW_2025_paper.pdf) | [Code](https://github.com/SLDGroup/MK-UNet)
+This branch keeps the LoMix implementation as the only active training and
+evaluation path. The main files are:
 
-#### 🔍 **Check out our papers: [LoMix](https://github.com/SLDGroup/LoMix) [NeurIPS 2025], [EfficientMedNeXt](https://github.com/SLDGroup/EfficientMedNeXt) [MICCAI 2025], [EffiDec3D](https://github.com/SLDGroup/EffiDec3D) [CVPR 2025], [EMCAD](https://github.com/SLDGroup/EMCAD) [CVPR 2024], [PP-SAM](https://github.com/SLDGroup/PP-SAM) [CVPRW 2024], [G-CASCADE](https://github.com/SLDGroup/G-CASCADE) [WACV 2024], [MERIT](https://github.com/SLDGroup/MERIT) [MIDL 2023], [CASCADE](https://github.com/SLDGroup/CASCADE) [WACV 2023]**
+- `mkunet_lomix_network.py`
+- `train_polyp_lomix.py`
+- `test_polyp_lomix.py`
+- `test_architecture.py`
 
+The implementation adds additive LoMix supervision on top of fixed-weight deep
+supervision and uses `CosineAnnealingWarmRestarts` for optimization.
 
-## Architecture
+## Environment
 
-<p align="center">
-<img src="mkunet_architecture.png" width=100% height=40% 
-class="center">
-</p>
+The prepared environment is located at:
 
-## Quantitative Results
-
-## Qualitative Results
-
-## Usage:
-### Recommended environment:
-**Please run the following commands.**
-```
-conda create -n mkunetenv python=3.8
-conda activate mkunetenv
-
-pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
-
-pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11.0/index.html
-
-pip install -r requirements.txt
-
+```bash
+/scratch/b23cs1001/mkunetenv
 ```
 
-### Data preparation:
+No extra packages are required beyond the project environment. All commands use
+`conda run`.
 
-- **ClinicDB dataset:**
-Download the splited ClinicDB dataset from [Google Drive](https://drive.google.com/drive/folders/1FPJr5f91uUCikxMvkwtZSEnYHemTZq1P?usp=share_link) and move into './data/polyp/' folder.
+## Dataset Layout
 
-- **ColonDB dataset:**
-Download the splited ColonDB dataset from [Google Drive](https://drive.google.com/drive/folders/1u4_8dMztnEBUaX-w3XfUR3jXLBhpccPA?usp=share_link) and move into './data/polyp/' folder.
-
-### Training:
+```text
+MK-UNet/
+├── mkunet_lomix_network.py
+├── train_polyp_lomix.py
+├── test_polyp_lomix.py
+├── test_architecture.py
+├── requirements.txt
+├── utils/
+│   ├── dataloader.py
+│   └── utils.py
+└── data/
+    └── polyp/
+        └── target/
+            └── ClinicDB/
+                ├── train/
+                │   ├── images/
+                │   └── masks/
+                ├── val/
+                │   ├── images/
+                │   └── masks/
+                └── test/
+                    ├── images/
+                    └── masks/
 ```
-cd into MK-UNet
-CUDA_VISIBLE_DEVICES=0 python -W ignore train_polyp.py --network MK_UNet
 
+## Training
+
+```bash
+CUDA_VISIBLE_DEVICES=0 conda run -p /scratch/b23cs1001/mkunetenv \
+    python -W ignore train_polyp_lomix.py
 ```
 
-### Testing:
+```bash
+CUDA_VISIBLE_DEVICES=0 conda run -p /scratch/b23cs1001/mkunetenv \
+    python -W ignore train_polyp_lomix.py \
+        --channels 16 32 64 128 256 \
+        --epoch 200 \
+        --batch_size 8 \
+        --T_0 20 \
+        --T_mult 2 \
+        --ckpt_freq 10
 ```
-cd into MK-UNet 
-CUDA_VISIBLE_DEVICES=0 python -W ignore test_polyp.py --network MK_UNet --run_id <your run_id>
 
+## Evaluation
+
+```bash
+CUDA_VISIBLE_DEVICES=0 conda run -p /scratch/b23cs1001/mkunetenv \
+    python -W ignore test_polyp_lomix.py \
+        --run_id 20250101_120000 \
+        --ckpt_name best.pth \
+        --pred_save_root ./results
 ```
 
-## Acknowledgement
-We are very grateful for these excellent works [EMCAD](https://github.com/SLDGroup/EMCAD), [CASCADE](https://github.com/SLDGroup/CASCADE), [MERIT](https://github.com/SLDGroup/MERIT), [G-CASCADE](https://github.com/SLDGroup/G-CASCADE), [PP-SAM](https://github.com/SLDGroup/PP-SAM), [PraNet](https://github.com/DengPingFan/PraNet), and [Polyp-PVT](https://github.com/DengPingFan/Polyp-PVT), which have provided the basis for our framework.
+## Unit Tests
 
-## Citations
+```bash
+conda run -p /scratch/b23cs1001/mkunetenv python test_architecture.py
+```
 
-``` 
+Expected ending:
+
+```text
+All tests passed ✓
+```
+
+## Citation
+
+```bibtex
 @inproceedings{rahman2025mk,
-  title={Mk-unet: Multi-kernel lightweight cnn for medical image segmentation},
-  author={Rahman, Md Mostafijur and Marculescu, Radu},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  pages={1042--1051},
-  year={2025}
+  title     = {Mk-unet: Multi-kernel lightweight cnn for medical image segmentation},
+  author    = {Rahman, Md Mostafijur and Marculescu, Radu},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages     = {1042--1051},
+  year      = {2025}
 }
 ```
