@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/MK-UNet-final/train_polyp.py", line 14, in <module>
+    from mkunet_network import MODEL_REGISTRY
+ImportError: cannot import name 'MODEL_REGISTRY' from 'mkunet_network' (/scratch/b23cs1001/MK-UNet-final/mkunet_network.py)
+
+ERROR conda.cli.main_run:execute(124): `conda run python /scratch/b23cs1001/MK-UNet-final/train_polyp.py` failed. (See above for error)

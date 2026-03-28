@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/scratch/b23cs1001/MK-UNet-final/train_polyp.py", line 399, in <module>
+    model = ModelClass(num_classes=1, in_channels=3, channels=channels)
+NameError: name 'ModelClass' is not defined
+
+ERROR conda.cli.main_run:execute(124): `conda run python /scratch/b23cs1001/MK-UNet-final/train_polyp.py` failed. (See above for error)

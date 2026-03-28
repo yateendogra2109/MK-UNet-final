@@ -11,19 +11,14 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-from mkunet_network import MODEL_REGISTRY
 from utils.dataloader_polyp import get_loader
 from utils.utils import clip_gradient, AvgMeter, cal_params_flops
-
+from mkunet_network import MK_UNet
 
 # =============================================================================
 # Loss: 0.5*BCE + 0.5*IoU  (original MK-UNet structure loss)
 # Only G_MKDC architectural change is active — no clDice.
 # =============================================================================
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
 
 # [Insert SoftSkeletonize and SoftClDiceLoss classes here]
 
@@ -69,9 +64,7 @@ class StructureClDiceLoss(nn.Module):
         # clDice is weighted.
         total_loss = bce + iou_loss + (self.cldice_weight * cldice)
         
-        return total_lossimport torch
-import torch.nn as nn
-import torch.nn.functional as F
+        return total_loss
 
 # [Insert SoftSkeletonize and SoftClDiceLoss classes here]
 
@@ -275,7 +268,7 @@ def test(model, path, dataset, opt):
 # Training loop
 # =============================================================================
 
-def train(train_loader, model, optimizer, epoch, opt, run_id):
+def train(train_loader, model, optimizer, epoch, opt, run_id,criterion ):
     model.train()
     global best, test_dice_at_best_val, total_train_time, dict_plot
 
@@ -283,7 +276,6 @@ def train(train_loader, model, optimizer, epoch, opt, run_id):
     loss_meter  = AvgMeter()
     size_rates  = [0.75, 1.0, 1.25]
     total_steps = len(train_loader)
-    criterion = StructureClDiceLoss()
 
     for step, (images, gts) in enumerate(train_loader, start=1):
         for rate in size_rates:
@@ -352,8 +344,7 @@ if __name__ == '__main__':
     dataset_name = 'ClinicDB'
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--network',       type=str,   default='MK_UNet',
-                        choices=list(MODEL_REGISTRY.keys()))
+    parser.add_argument('--network',       type=str,   default='MK_UNet',)
     parser.add_argument('--epoch',         type=int,   default=200)
     parser.add_argument('--lr',            type=float, default=5e-4)
     parser.add_argument('--batchsize',     type=int,   default=8)
@@ -368,6 +359,8 @@ if __name__ == '__main__':
                         default=f'./data/polyp/target/{dataset_name}/')
     parser.add_argument('--train_save',    type=str, default='')
     opt = parser.parse_args()
+    criterion = StructureClDiceLoss()
+
 
     NET_CONFIGS = {
         'MK_UNet_T': [4,  8,  16,  24,  32],
@@ -377,9 +370,8 @@ if __name__ == '__main__':
         'MK_UNet_L': [64, 128, 256, 384, 512],
     }
 
-    chosen_net = opt.network if opt.network in MODEL_REGISTRY else 'MK_UNet'
+    chosen_net = 'MK_UNet'
     channels   = NET_CONFIGS[chosen_net]
-    ModelClass = MODEL_REGISTRY[chosen_net]   # FIX B8: use chosen variant
 
     for run in range(1, 6):
         dict_plot            = {'val': [], 'test': []}
@@ -404,7 +396,7 @@ if __name__ == '__main__':
         )
 
         # ── Build model ───────────────────────────────────────────────────────
-        model = ModelClass(num_classes=1, in_channels=3, channels=channels)
+        model = MK_UNet(num_classes=1, in_channels=3, channels=channels)
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         model.to(device)
 
@@ -428,7 +420,7 @@ if __name__ == '__main__':
         )
 
         for epoch in range(1, opt.epoch + 1):
-            train(train_loader, model, optimizer, epoch, opt, run_id)
+            train(train_loader, model, optimizer, epoch, opt, run_id,criterion)
             scheduler.step()
 
         summary = (

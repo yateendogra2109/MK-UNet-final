@@ -1,0 +1,6 @@
+  File "/scratch/b23cs1001/MK-UNet-final/train_polyp.py", line 72
+    return total_lossimport torch
+                            ^
+SyntaxError: invalid syntax
+
+ERROR conda.cli.main_run:execute(124): `conda run python /scratch/b23cs1001/MK-UNet-final/train_polyp.py` failed. (See above for error)
