@@ -11,7 +11,7 @@ Medical image segmentation requires a balance of high accuracy and computational
 Our project introduces a structural bias to the MK-UNet architecture by injecting a fixed Sobel edge signal into the Grouped Attention Gate (GAG). This modification structurally biases the attention gate toward boundary-aware attention. It successfully raised the test Dice score on the ClinicDB dataset from 0.93 to 0.94 (+0.006) without adding any trainable parameters.
 
 ## Architecture
-
+![Architecture](https://i.imgur.com/IVYcQrj.png)
 
 ## The Approach: Sobel Edge Signal in GAG
 
