@@ -138,41 +138,98 @@ class SpatialAttention(nn.Module):
         x = self.conv(x)
         return self.sigmoid(x)
 
+# =============================================================================
+# CHANGE: Sobel edge signal in GAG
+#
+# The original GAG gates using g and x via two separate group Conv3x3.
+# Here we concatenate a fixed Sobel edge response of x as an extra channel
+# before W_x processes it.  This adds zero learned parameters and structurally
+# biases the attention gate toward object boundaries.
+#
+# Implementation detail:
+#   - W_x now accepts (F_l + 1) input channels instead of F_l
+#   - The extra channel is the L2-norm of Sobel-x and Sobel-y responses,
+#     computed on-the-fly in forward() using fixed (non-learned) kernels
+#   - All other parts of GAG are identical to the original
+# =============================================================================
+
 class GroupedAttentionGate(nn.Module):
-    def __init__(self,F_g,F_l,F_int, kernel_size=1, groups=1, activation='relu'):
-        super(GroupedAttentionGate,self).__init__()
+    def __init__(self, F_g, F_l, F_int, kernel_size=1, groups=1, activation='relu'):
+        super(GroupedAttentionGate, self).__init__()
         if kernel_size == 1:
             groups = 1
+
+        # W_g: unchanged — takes decoder feature g as-is
         self.W_g = nn.Sequential(
-            nn.Conv2d(F_g, F_int, kernel_size=kernel_size,stride=1,padding=kernel_size//2,groups=groups, bias=True),
+            nn.Conv2d(F_g, F_int, kernel_size=kernel_size, stride=1,
+                      padding=kernel_size // 2, groups=groups, bias=True),
             nn.BatchNorm2d(F_int)
         )
-        
+
+        # W_x: now accepts F_l + 1 channels (F_l original + 1 Sobel edge map)
+        # groups must divide (F_l + 1); fall back to 1 if not divisible
+        wx_in   = F_l + 1
+        wx_grps = groups if (wx_in % groups == 0) else 1
         self.W_x = nn.Sequential(
-            nn.Conv2d(F_l, F_int, kernel_size=kernel_size,stride=1,padding=kernel_size//2,groups=groups, bias=True),
+            nn.Conv2d(wx_in, F_int, kernel_size=kernel_size, stride=1,
+                      padding=kernel_size // 2, groups=wx_grps, bias=True),
             nn.BatchNorm2d(F_int)
         )
 
         self.psi = nn.Sequential(
-            nn.Conv2d(F_int, 1, kernel_size=1,stride=1,padding=0,bias=True),
+            nn.Conv2d(F_int, 1, kernel_size=1, stride=1, padding=0, bias=True),
             nn.BatchNorm2d(1),
             nn.Sigmoid()
         )
 
         self.activation = act_layer(activation, inplace=True)
 
+        # Fixed Sobel kernels — registered as buffers (not learned, not in state_dict params)
+        # Shape: [1, 1, 3, 3] — applied channel-wise via groups=C
+        sobel_x = torch.tensor([[-1., 0., 1.],
+                                 [-2., 0., 2.],
+                                 [-1., 0., 1.]], dtype=torch.float32).view(1, 1, 3, 3)
+        sobel_y = torch.tensor([[-1., -2., -1.],
+                                 [ 0.,  0.,  0.],
+                                 [ 1.,  2.,  1.]], dtype=torch.float32).view(1, 1, 3, 3)
+        self.register_buffer('sobel_x', sobel_x)
+        self.register_buffer('sobel_y', sobel_y)
+
         self.init_weights('normal')
-    
+
     def init_weights(self, scheme=''):
         named_apply(partial(_init_weights, scheme=scheme), self)
-        
-    def forward(self,g,x):
-        g1 = self.W_g(g)
-        x1 = self.W_x(x)
-        psi = self.activation(g1+x1)
+
+    def _sobel_edge(self, x):
+        """
+        Compute a single-channel L2 Sobel edge map from x.
+        x: [B, C, H, W]
+        Returns: [B, 1, H, W]  — mean edge magnitude across channels
+        """
+        B, C, H, W = x.shape
+        # Expand fixed kernels to [C, 1, 3, 3] for depthwise application
+        kx = self.sobel_x.expand(C, 1, 3, 3)
+        ky = self.sobel_y.expand(C, 1, 3, 3)
+        # Depthwise convolution — one kernel per input channel
+        gx = F.conv2d(x, kx, padding=1, groups=C)   # [B, C, H, W]
+        gy = F.conv2d(x, ky, padding=1, groups=C)   # [B, C, H, W]
+        # L2 magnitude, averaged over channels → [B, 1, H, W]
+        mag = torch.sqrt(gx ** 2 + gy ** 2 + 1e-8)
+        return mag.mean(dim=1, keepdim=True)          # [B, 1, H, W]
+
+    def forward(self, g, x):
+        # Compute fixed Sobel edge map of the encoder skip feature x
+        edge = self._sobel_edge(x)                    # [B, 1, H, W]
+
+        # Concatenate edge map as extra channel before W_x
+        x_aug = torch.cat([x, edge], dim=1)           # [B, F_l+1, H, W]
+
+        g1  = self.W_g(g)
+        x1  = self.W_x(x_aug)
+        psi = self.activation(g1 + x1)
         psi = self.psi(psi)
 
-        return x*psi
+        return x * psi
 
 class MultiKernelDepthwiseConv(nn.Module):
     def __init__(self, in_channels, kernel_sizes, stride, activation='relu6', dw_parallel=True):
@@ -314,8 +371,14 @@ class MK_UNet_T(nn.Module):
         self.CA3 = ChannelAttention(channels[2], ratio=16)
         self.CA4 = ChannelAttention(channels[1], ratio=8)
         self.CA5 = ChannelAttention(channels[0], ratio=4)
-        
-        self.SA = SpatialAttention()
+
+        # 5 independent SA modules — one per decoder stage
+        # Each learns its own spatial attention weights for its feature resolution
+        self.SA1 = SpatialAttention()
+        self.SA2 = SpatialAttention()
+        self.SA3 = SpatialAttention()
+        self.SA4 = SpatialAttention()
+        self.SA5 = SpatialAttention()
 
         self.out1 = nn.Conv2d(channels[2], num_classes, kernel_size=1)
         self.out2 = nn.Conv2d(channels[1], num_classes, kernel_size=1)
@@ -348,35 +411,35 @@ class MK_UNet_T(nn.Module):
 
         ### Stage 4
         out = self.CA1(out)*out
-        out = self.SA(out)*out
+        out = self.SA1(out)*out
         out = F.relu(F.interpolate(self.decoder1(out),scale_factor=(2,2),mode ='bilinear')) 
         t4 = self.AG1(g=out,x=t4)
         out = torch.add(out,t4)
 
         ### Stage 3
         out = self.CA2(out)*out
-        out = self.SA(out)*out
+        out = self.SA2(out)*out
         out = F.relu(F.interpolate(self.decoder2(out),scale_factor=(2,2),mode ='bilinear')) 
         p1 = F.interpolate(self.out1(out),scale_factor=(8,8),mode ='bilinear')
         t3 = self.AG2(g=out,x=t3)
         out = torch.add(out,t3)
 
         out = self.CA3(out)*out
-        out = self.SA(out)*out
+        out = self.SA3(out)*out
         out = F.relu(F.interpolate(self.decoder3(out),scale_factor=(2,2),mode ='bilinear')) 
         p2 = F.interpolate(self.out2(out),scale_factor=(4,4),mode ='bilinear')
         t2 = self.AG3(g=out,x=t2)
         out = torch.add(out,t2)
 
         out = self.CA4(out)*out
-        out = self.SA(out)*out
+        out = self.SA4(out)*out
         out = F.relu(F.interpolate(self.decoder4(out),scale_factor=(2,2),mode ='bilinear')) 
         p3 = F.interpolate(self.out3(out),scale_factor=(2,2),mode ='bilinear')
         t1 = self.AG4(g=out,x=t1)
         out = torch.add(out,t1)
 
         out = self.CA5(out)*out
-        out = self.SA(out)*out
+        out = self.SA5(out)*out
         out = F.relu(F.interpolate(self.decoder5(out),scale_factor=(2,2),mode ='bilinear')) 
        
         p4 = self.out4(out)
@@ -410,8 +473,13 @@ class MK_UNet_S(nn.Module):
         self.CA3 = ChannelAttention(channels[2], ratio=16)
         self.CA4 = ChannelAttention(channels[1], ratio=8)
         self.CA5 = ChannelAttention(channels[0], ratio=4)
-        
-        self.SA = SpatialAttention()
+
+        # 5 independent SA modules — one per decoder stage
+        self.SA1 = SpatialAttention()
+        self.SA2 = SpatialAttention()
+        self.SA3 = SpatialAttention()
+        self.SA4 = SpatialAttention()
+        self.SA5 = SpatialAttention()
 
         self.out1 = nn.Conv2d(channels[2], num_classes, kernel_size=1)
         self.out2 = nn.Conv2d(channels[1], num_classes, kernel_size=1)
@@ -444,35 +512,35 @@ class MK_UNet_S(nn.Module):
 
         ### Stage 4
         out = self.CA1(out)*out
-        out = self.SA(out)*out
+        out = self.SA1(out)*out
         out = F.relu(F.interpolate(self.decoder1(out),scale_factor=(2,2),mode ='bilinear')) 
         t4 = self.AG1(g=out,x=t4)
         out = torch.add(out,t4)
 
         ### Stage 3
         out = self.CA2(out)*out
-        out = self.SA(out)*out
+        out = self.SA2(out)*out
         out = F.relu(F.interpolate(self.decoder2(out),scale_factor=(2,2),mode ='bilinear')) 
         p1 = F.interpolate(self.out1(out),scale_factor=(8,8),mode ='bilinear')
         t3 = self.AG2(g=out,x=t3)
         out = torch.add(out,t3)
 
         out = self.CA3(out)*out
-        out = self.SA(out)*out
+        out = self.SA3(out)*out
         out = F.relu(F.interpolate(self.decoder3(out),scale_factor=(2,2),mode ='bilinear')) 
         p2 = F.interpolate(self.out2(out),scale_factor=(4,4),mode ='bilinear')
         t2 = self.AG3(g=out,x=t2)
         out = torch.add(out,t2)
 
         out = self.CA4(out)*out
-        out = self.SA(out)*out
+        out = self.SA4(out)*out
         out = F.relu(F.interpolate(self.decoder4(out),scale_factor=(2,2),mode ='bilinear')) 
         p3 = F.interpolate(self.out3(out),scale_factor=(2,2),mode ='bilinear')
         t1 = self.AG4(g=out,x=t1)
         out = torch.add(out,t1)
 
         out = self.CA5(out)*out
-        out = self.SA(out)*out
+        out = self.SA5(out)*out
         out = F.relu(F.interpolate(self.decoder5(out),scale_factor=(2,2),mode ='bilinear')) 
        
         p4 = self.out4(out)
@@ -506,8 +574,13 @@ class MK_UNet(nn.Module):
         self.CA3 = ChannelAttention(channels[2], ratio=16)
         self.CA4 = ChannelAttention(channels[1], ratio=8)
         self.CA5 = ChannelAttention(channels[0], ratio=4)
-        
-        self.SA = SpatialAttention()
+
+        # 5 independent SA modules — one per decoder stage
+        self.SA1 = SpatialAttention()
+        self.SA2 = SpatialAttention()
+        self.SA3 = SpatialAttention()
+        self.SA4 = SpatialAttention()
+        self.SA5 = SpatialAttention()
 
         self.out1 = nn.Conv2d(channels[2], num_classes, kernel_size=1)
         self.out2 = nn.Conv2d(channels[1], num_classes, kernel_size=1)
@@ -540,35 +613,35 @@ class MK_UNet(nn.Module):
 
         ### Stage 4
         out = self.CA1(out)*out
-        out = self.SA(out)*out
+        out = self.SA1(out)*out
         out = F.relu(F.interpolate(self.decoder1(out),scale_factor=(2,2),mode ='bilinear')) 
         t4 = self.AG1(g=out,x=t4)
         out = torch.add(out,t4)
 
         ### Stage 3
         out = self.CA2(out)*out
-        out = self.SA(out)*out
+        out = self.SA2(out)*out
         out = F.relu(F.interpolate(self.decoder2(out),scale_factor=(2,2),mode ='bilinear')) 
         p1 = F.interpolate(self.out1(out),scale_factor=(8,8),mode ='bilinear')
         t3 = self.AG2(g=out,x=t3)
         out = torch.add(out,t3)
 
         out = self.CA3(out)*out
-        out = self.SA(out)*out
+        out = self.SA3(out)*out
         out = F.relu(F.interpolate(self.decoder3(out),scale_factor=(2,2),mode ='bilinear')) 
         p2 = F.interpolate(self.out2(out),scale_factor=(4,4),mode ='bilinear')
         t2 = self.AG3(g=out,x=t2)
         out = torch.add(out,t2)
 
         out = self.CA4(out)*out
-        out = self.SA(out)*out
+        out = self.SA4(out)*out
         out = F.relu(F.interpolate(self.decoder4(out),scale_factor=(2,2),mode ='bilinear')) 
         p3 = F.interpolate(self.out3(out),scale_factor=(2,2),mode ='bilinear')
         t1 = self.AG4(g=out,x=t1)
         out = torch.add(out,t1)
 
         out = self.CA5(out)*out
-        out = self.SA(out)*out
+        out = self.SA5(out)*out
         out = F.relu(F.interpolate(self.decoder5(out),scale_factor=(2,2),mode ='bilinear')) 
        
         p4 = self.out4(out)
